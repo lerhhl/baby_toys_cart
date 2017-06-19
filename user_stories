@@ -1,0 +1,26 @@
+Visitor stories:
+As a visitor, I can access browse a collection of products
+As a visitor, I can view the details of one product
+As a visitor, I can add a product to my shopping cart
+As a visitor, if I make an order from my shopping cart, I will be redirected to sign-up/sign-in page
+As a visitor, I can sign up using email to become a registered user
+As a visitor, I can sign up using facebook to become a registered user
+
+Registered User stories:
+As a user, I can sign in using my email address
+As a user, I can sign in using facebook
+As a user, I can access browse a collection of products
+As a user, I can view the details of one product
+As a user, I can add a product to my shopping cart
+As a user, I can place an order from my shopping cart
+As a user, I can use my credit card to pay for my order
+As a user, I will receive a notification via email when my order is confirmed
+As a user, I will receive a notification via email each time my order status is changed
+
+Admin stories:
+As an admin, I can create a new product
+As an admin, I can view a list of all products
+As an admin, I can view the details of a product, and all orders that are associated with it
+As an admin, I can view a list of all orders, sorted by their order status
+As an admin, I can view the details of an order.
+As an admin, I can change the status of an order
