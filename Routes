@@ -1,0 +1,52 @@
+Prefix Verb   URI Pattern                                                          Controller#Action
+                    new_user_session GET    /users/sign_in(.:format)                                             devise/sessions#new
+                        user_session POST   /users/sign_in(.:format)                                             devise/sessions#create
+                destroy_user_session DELETE /users/sign_out(.:format)                                            devise/sessions#destroy
+                   new_user_password GET    /users/password/new(.:format)                                        devise/passwords#new
+                  edit_user_password GET    /users/password/edit(.:format)                                       devise/passwords#edit
+                       user_password PATCH  /users/password(.:format)                                            devise/passwords#update
+                                     PUT    /users/password(.:format)                                            devise/passwords#update
+                                     POST   /users/password(.:format)                                            devise/passwords#create
+            cancel_user_registration GET    /users/cancel(.:format)                                              devise/registrations#cancel
+               new_user_registration GET    /users/sign_up(.:format)                                             devise/registrations#new
+              edit_user_registration GET    /users/edit(.:format)                                                devise/registrations#edit
+                   user_registration PATCH  /users(.:format)                                                     devise/registrations#update
+                                     PUT    /users(.:format)                                                     devise/registrations#update
+                                     DELETE /users(.:format)                                                     devise/registrations#destroy
+                                     POST   /users(.:format)                                                     devise/registrations#create
+              product_product_images GET    /products/:product_id/product_images(.:format)                       product_images#index
+               product_product_image GET    /products/:product_id/product_images/:id(.:format)                   product_images#show
+                            products GET    /products(.:format)                                                  products#index
+                             product GET    /products/:id(.:format)                                              products#show
+my_shopping_cart_shopping_list_index POST   /my/shopping_cart/:shopping_cart_id/shopping_list(.:format)          my/shopping_list#create
+  new_my_shopping_cart_shopping_list GET    /my/shopping_cart/:shopping_cart_id/shopping_list/new(.:format)      my/shopping_list#new
+ edit_my_shopping_cart_shopping_list GET    /my/shopping_cart/:shopping_cart_id/shopping_list/:id/edit(.:format) my/shopping_list#edit
+      my_shopping_cart_shopping_list GET    /my/shopping_cart/:shopping_cart_id/shopping_list/:id(.:format)      my/shopping_list#show
+                                     PATCH  /my/shopping_cart/:shopping_cart_id/shopping_list/:id(.:format)      my/shopping_list#update
+                                     PUT    /my/shopping_cart/:shopping_cart_id/shopping_list/:id(.:format)      my/shopping_list#update
+                                     DELETE /my/shopping_cart/:shopping_cart_id/shopping_list/:id(.:format)      my/shopping_list#destroy
+              my_shopping_cart_index GET    /my/shopping_cart(.:format)                                          my/shopping_cart#index
+                     my_transactions GET    /my/transactions(.:format)                                           my#transactions
+                   my_shopping_lists GET    /my/shopping_lists(.:format)                                         my#shopping_lists {:only=>[:index, :show]}
+                  admin_transactions GET    /admin/transactions(.:format)                                        admin/transactions#index
+              edit_admin_transaction GET    /admin/transactions/:id/edit(.:format)                               admin/transactions#edit
+                   admin_transaction GET    /admin/transactions/:id(.:format)                                    admin/transactions#show
+                                     PATCH  /admin/transactions/:id(.:format)                                    admin/transactions#update
+                                     PUT    /admin/transactions/:id(.:format)                                    admin/transactions#update
+        admin_product_product_images GET    /admin/products/:product_id/product_images(.:format)                 admin/product_images#index
+                                     POST   /admin/products/:product_id/product_images(.:format)                 admin/product_images#create
+     new_admin_product_product_image GET    /admin/products/:product_id/product_images/new(.:format)             admin/product_images#new
+    edit_admin_product_product_image GET    /admin/products/:product_id/product_images/:id/edit(.:format)        admin/product_images#edit
+         admin_product_product_image GET    /admin/products/:product_id/product_images/:id(.:format)             admin/product_images#show
+                                     PATCH  /admin/products/:product_id/product_images/:id(.:format)             admin/product_images#update
+                                     PUT    /admin/products/:product_id/product_images/:id(.:format)             admin/product_images#update
+                                     DELETE /admin/products/:product_id/product_images/:id(.:format)             admin/product_images#destroy
+                      admin_products GET    /admin/products(.:format)                                            admin/products#index
+                                     POST   /admin/products(.:format)                                            admin/products#create
+                   new_admin_product GET    /admin/products/new(.:format)                                        admin/products#new
+                  edit_admin_product GET    /admin/products/:id/edit(.:format)                                   admin/products#edit
+                       admin_product GET    /admin/products/:id(.:format)                                        admin/products#show
+                                     PATCH  /admin/products/:id(.:format)                                        admin/products#update
+                                     PUT    /admin/products/:id(.:format)                                        admin/products#update
+                                     DELETE /admin/products/:id(.:format)                                        admin/products#destroy
+                         
