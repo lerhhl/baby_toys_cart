@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :product do
-    name "puzzle name"
+    sequence(:name) { |n| "puzzle name#{n}" }
     price 1.00
     country_of_origin "china"
     brand "brand"

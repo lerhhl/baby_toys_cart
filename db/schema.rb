@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170619095213) do
     t.float "price", null: false
     t.string "country_of_origin", null: false
     t.string "brand", null: false
-    t.integer "age_group", null: false
+    t.string "age_group", null: false
     t.string "category", null: false
     t.text "description", null: false
     t.integer "stock_quantity", default: 0, null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170619095213) do
     t.string "last_name", null: false
     t.integer "telephone"
     t.string "address"
-    t.boolean "is_admin?", null: false
+    t.boolean "is_admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
