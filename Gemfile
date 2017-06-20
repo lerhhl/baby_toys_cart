@@ -7,6 +7,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
+gem 'dotenv-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -38,6 +39,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
 gem 'carrierwave', '~> 1.1.0'
+gem 'omniauth-facebook'
 
 group :development, :test do
 # Call 'byebug' anywhere in the code to stop execution and get a debugger console
