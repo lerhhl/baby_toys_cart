@@ -3,13 +3,23 @@ require 'rails_helper'
 RSpec.describe ProductsController, type: :controller do
 
   describe "GET #index" do
-    let!(:product) { create_list(:product, 10) }
+    let!(:products) { create_list(:product, 10) }
 
     before do
       get :index
     end
 
-    it { expect(assigns(:products)).to eq(product) }
+    it { expect(assigns(:products)).to eq(products) }
   end
   
+  describe "GET #show" do
+    let(:product) { create(:product) }
+
+    before do
+      get :show, params: { id: product }
+    end
+    
+    it { expect(assigns(:product)).to eq(product) }
+  end
+
 end
