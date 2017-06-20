@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20170619151145) do
 
   # These are extensions that must be enabled in order to support this database
@@ -42,8 +41,8 @@ ActiveRecord::Schema.define(version: 20170619151145) do
     t.inet "last_sign_in_ip"
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.integer "telephone"
-    t.string "address"
+    t.integer "telephone", null: false
+    t.string "address", null: false
     t.boolean "is_admin?", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
