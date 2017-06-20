@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook], authentication_keys: [:login]
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
 
   validates :password, length: { minimum: 6 }
   validates :email, uniqueness: { case_sensitive: false }
@@ -34,6 +36,8 @@ class User < ApplicationRecord
         user.uid = data["id"] if user.uid.blank?
         user.email = data["email"] if user.email.blank?
         user.first_name = data["name"] if user.first_name.blank?
+        user.password = 123456
+        user.password_confirmation = 123456
       end
     end
   end
