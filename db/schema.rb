@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170619151145) do
     t.float "price", null: false
     t.string "country_of_origin", null: false
     t.string "brand", null: false
-    t.integer "age_group", null: false
+    t.string "age_group", null: false
     t.string "category", null: false
     t.text "description", null: false
     t.integer "stock_quantity", default: 0, null: false
@@ -41,8 +41,13 @@ ActiveRecord::Schema.define(version: 20170619151145) do
     t.inet "last_sign_in_ip"
     t.string "first_name", null: false
     t.string "last_name", null: false
+<<<<<<< HEAD
+    t.integer "telephone"
+    t.string "address"
+=======
     t.integer "telephone", null: false
     t.string "address", null: false
+>>>>>>> master
     t.boolean "is_admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

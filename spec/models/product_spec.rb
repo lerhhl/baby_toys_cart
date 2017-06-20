@@ -11,8 +11,8 @@ RSpec.describe Product, type: :model do
   it { should validate_presence_of(:stock_quantity) }
   #it { should have_many(:images) }
 
-  it { should have_many(:images) }
-  it { should have_many(:transactions) }
-  it { should have_many(:shopping_lists) }
+  # it { should have_many(:images) }
+  # it { should have_many(:transactions) }
+  # it { should have_many(:shopping_lists) }
 
 end
