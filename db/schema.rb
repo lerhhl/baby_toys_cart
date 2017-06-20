@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170619151145) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "last_name"
     t.integer "telephone"
     t.string "address"
     t.boolean "is_admin", default: false
