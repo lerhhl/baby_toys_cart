@@ -9,11 +9,11 @@ Rails.application.routes.draw do
   end
 
   namespace "my" do
-    resources :shopping_cart, only: [:index] do
-      resources :shopping_list, except: [:index]
+    resources :cart, only: [:index] do
+      resources :cart_list, except: [:index]
     end
     get :transactions
-    get :shopping_lists, only: [:index, :show]
+    get :cart_lists, only: [:index, :show]
   end
 
   namespace "admin" do
@@ -22,5 +22,5 @@ Rails.application.routes.draw do
       resources :product_images
     end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end
