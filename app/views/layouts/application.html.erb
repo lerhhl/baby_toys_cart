@@ -17,15 +17,19 @@
           <% if user_signed_in? == false %>
             <li><%= link_to 'Sign up', new_user_registration_path%></li>
             <li><%= link_to 'Sign in', new_user_session_path %></li>
-          <% else %>
+          <% elsif current_user.is_admin == false %>
             <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
             <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>            
+            <li><%= link_to 'New product', new_admin_product_path %></li>
           <% end %>
         </ul>
       </div>
-      <!-- <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p> -->
     </nav>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

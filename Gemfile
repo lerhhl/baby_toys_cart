@@ -7,6 +7,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
+# A Ruby gem to load environment variables from `.env`.
 gem 'dotenv-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
@@ -40,12 +41,14 @@ gem 'jquery-rails'
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
 gem 'carrierwave', '~> 1.1.0'
 gem 'omniauth-facebook'
+#Gemification of rails's country_select
+gem 'country_select'
+#ll sorts of useful information about every country packaged as convenient little country objects. It includes data from ISO 3166 (countries and states/subdivisions ), ISO 4217 (currency), and E.164 (phone numbers).
+gem 'countries'
 
 group :development, :test do
 # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-# A Ruby gem to load environment variables from `.env`.
-gem 'dotenv-rails'
 gem 'shoulda-matchers'
 gem 'rspec-rails'
 gem 'rails-controller-testing'
