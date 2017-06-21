@@ -25,6 +25,21 @@
         </div>
 
         <div class="field form-group">
+          <%= f.label :last_name %><br />
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :address %><br />
+          <%= f.text_area :address, class: "form-control" %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :telephone %><br />
+          <%= f.telephone_field :telephone, class: "form-control" %>
+        </div>
+
+        <div class="field form-group">
           <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
         </div>
