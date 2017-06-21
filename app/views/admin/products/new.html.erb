@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>New Product</h2>
+      <% if @product.errors.present?%>
+        <ul>
+          <% @product.errors.each do |error, message|%>
+            <li> <%= "#{error.capitalize}  #{message}" %></li>
+          <% end %>
+        </ul>
+      <% end%>
+      <div class="form_container">
+        <%= form_for @product, url: { controller: "admin/products" } do |f| %>
+          <table>
+            <tr>
+              <td><%= f.label :name %></td>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :description %></td>
+              <td><%= f.text_area :description %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "age_group (years)" %></td>
+              <td><%= f.select :age_group, ["1-2", "3-4", "5-7", "8-11", "12-14"] %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :country_of_origin %></td>
+              <!-- <td><%= f.select :country_of_origin, ["Singapore", "Malaysia"] %></td> -->
+              <td><%= f.country_select :country_of_origin, { include_blank: 'Select a country' }, { class: 'country-select-box' } %></td>
+            </tr>    
+            <tr>
+              <td><%= f.label :category %></td>
+              <td><%= f.select :category, ["role_play", "vehicles", "outdoor", "wheels", "dolls", "craft", "building", "puzzle"] %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :brand %></td>
+              <td><%= f.select :brand, ["Lego", "Nintendo", "Mattel", "Hasbro", "Nerf", "MEGA Bloks", "Fisher Price", "Tiger Electronics", "Playmobil", "Kenner"] %></td>
+            </tr>            
+            <tr>
+              <td><%= f.label :price %></td>
+              <td><%= f.number_field :price %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :stock_quantity %></td>
+              <td><%= f.number_field :stock_quantity %></td>
+            </tr>
+            <tr>
+              <td colspan="2"><%= f.submit %></td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
