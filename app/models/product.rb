@@ -12,6 +12,6 @@ class Product < ApplicationRecord
 
   # has_many :images, dependent: :destroy
   # has_many :transactions, through: :transaction_products
-  has_many :cart_lists, dependent: :destroy 
+  has_many :cart_lists, dependent: :destroy
 
 end

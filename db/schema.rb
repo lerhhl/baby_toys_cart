@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170621090045) do
   enable_extension "plpgsql"
 
   create_table "cart_lists", force: :cascade do |t|
-    t.integer "purchase_quantity", default: 0, null: false
+    t.integer "purchase_quantity", null: false
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false

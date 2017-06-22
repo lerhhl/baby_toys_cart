@@ -3,12 +3,12 @@ class My::CartListsController < ApplicationController
   # before_action :set_cart, only: [:create, :update, :destroy]
 
   def new
+    @cartlist = CartList.new
   end
 
   def create
-    @cart = find_cart
-    @cartlist = CartList.new(product_id: params[:product_id], user_id: current_user.id)
-    if @cartlist.save
+    @cartlist = CartList.new(user_id: current_user.id, product_id: params[:cart_list][:product_id], purchase_quantity: params[:cart_list][:purchase_quantity])
+    if @cartlist.save!
       flash[:notice] = "Product successfully added to shopping cart"
       redirect_back(fallback_location: root_path)
     else
@@ -16,10 +16,8 @@ class My::CartListsController < ApplicationController
     end
   end
 
-  private
-
-  def find_cart
-    session[:cart] ||= Cart.new
-  end
+  # def find_cart
+  #   session[:cart] ||= Cart.new
+  # end
 
 end
