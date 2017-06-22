@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-10">
       <%= render partial: "product" %>
         <%= form_for [:my_cart, @cartlist] do |f| %>
           <table>
@@ -11,8 +11,10 @@
               </tr>
           </table>
           <%= f.submit "Add to Cart" %>
-          <%= link_to "Back", root_path %>
         <% end %>
+        <br>
+        <%= link_to "Back", root_path %>
+        <br><br>
     </div>
   </div>
 </div>
