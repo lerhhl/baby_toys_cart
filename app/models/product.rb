@@ -2,9 +2,7 @@ class Product < ApplicationRecord
   validates :name, :price, :country_of_origin, :brand, :age_group, :category, :description, :stock_quantity, presence: true
 
   # enum :country_of_origin: {
-  #   "Draft":        1,
-  #   "Published":    2,
-  #   "Abandoned":    3,
+  #   "Sg":        Singapore,
   # }
 
   def country_name

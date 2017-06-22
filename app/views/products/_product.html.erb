@@ -1,5 +1,9 @@
 <h2>Product details</h2>
-  <br>
+<% if current_user.is_admin %>
+  <%= link_to "(Edit)", edit_admin_product_path(@product) %>
+  <%= link_to "  (Destroy)", admin_product_path, method: :delete, data:{ confirm: "Are you sure?" } %>
+<% end %>
+  <br><br>
   <ul>
     <li>Name: <%= @product.name.capitalize %></li>
     <li>Description: <%= @product.description.capitalize %></li>
