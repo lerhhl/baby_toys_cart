@@ -12,7 +12,7 @@ class Product < ApplicationRecord
     country.translations[I18n.locale.to_s] || country.name
   end
 
-  # has_many :images, dependent: :destroy
+  has_many :product_images, dependent: :destroy
   # has_many :transactions, through: :transaction_products
   # has_many :shopping_lists
 
