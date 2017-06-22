@@ -1,9 +1,9 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_admin?
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def show
-    @product = Product.find(params[:id])
   end
   
   def new
@@ -24,10 +24,16 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
+    if @product.update(product_params_update)
+      redirect_to admin_product_path(@product)
+    else
+      render :edit
+    end
   end
 
   def destroy
-
+    @product.destroy
+    redirect_to root_path
   end
 
   private
@@ -40,4 +46,12 @@ class Admin::ProductsController < ApplicationController
     params.require(:product).permit(:name, :description, :age_group, :country_of_origin, :category, :brand, :price, :stock_quantity)
   end
 
+  def product_params_update
+    params.require(:product)["country_of_origin"] = ISO3166::Country[params.require(:product)["country_of_origin"]].translations[I18n.locale.to_s] || country.name
+    params.require(:product).permit(:name, :description, :age_group, :country_of_origin, :category, :brand, :price, :stock_quantity)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
 end
