@@ -1,7 +1,8 @@
 class My::CartsController < ApplicationController
 
   def show
-    @cartlist = CartList.where(user_id: current_user.id)
+    @cart = current_cart
+    @cartlist = CartList.where(cart_id: @cart)
   end
 
 end
