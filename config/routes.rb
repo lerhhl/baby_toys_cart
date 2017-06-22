@@ -9,12 +9,14 @@ Rails.application.routes.draw do
   end
 
   namespace "my" do
-    resources :cart, only: [:index] do
-      resources :cart_list, except: [:index]
+    resource :cart
+    resource :cart, only: [:index] do
+      resources :cart_lists, except: [:index]
     end
     get :transactions
-    get :cart_lists, only: [:index, :show]
   end
+
+  post '/add_to_cart/:product_id' => 'producs#add_to_cart', :as => 'add_to_cart'
 
   namespace "admin" do
     resources :transactions, except: [:new, :create, :destroy]

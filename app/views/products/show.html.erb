@@ -3,7 +3,17 @@
     <div class="col-md-6">
       <%= render partial: "product" %>
       <div class="btn btn-block"><%= link_to "Back", :back %></div>
-      <%= link_to "Add Item", my_cart_cart_list_index_path %>
+      <%= link_to "Back", :back %>
+      <div class="form-group">
+        <label for="sel1">Select Quantity:</label>
+        <select class="form-control" id="sel1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+      </div>
+      <%= button_to "Add to Cart", my_cart_cart_lists_path(product_id: @product.id) %>
     </div>
   </div>
 </div>
