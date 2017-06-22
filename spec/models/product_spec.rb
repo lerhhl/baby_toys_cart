@@ -13,6 +13,6 @@ RSpec.describe Product, type: :model do
 
   # it { should have_many(:images) }
   # it { should have_many(:transactions) }
-  # it { should have_many(:shopping_lists) }
+  it { should have_many(:cart_lists) }
 
 end
