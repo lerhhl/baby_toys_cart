@@ -15,7 +15,7 @@
     <tr>
       <td><%= f.label :country_of_origin %></td>
       <% if @product.country_of_origin == nil %>
-        <td><%= f.country_select :country_of_origin, { include_blank: 'Select a country' }, { class: 'country-select-box' } %></td>
+        <td><%= f.country_select :country_of_origin, { priority_countries: ["China","Indonesia","Malaysia","Singapore","Thailand"] }, { class: 'country-select-box' } %></td>
       <% else %>
         <td><%= f.country_select :country_of_origin, { priority_countries: ["#{@product.country_of_origin}","China","Indonesia","Malaysia","Singapore","Thailand"] }, { class: 'country-select-box' } %></td>
       <% end %>

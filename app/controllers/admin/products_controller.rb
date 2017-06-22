@@ -5,22 +5,22 @@ class Admin::ProductsController < ApplicationController
 
   def show
   end
-  
+
   def new
     @product = Product.new
   end
-  
+
   def create
-    product_images_build  
     @product = Product.new(product_params)
+    product_images_build  
     @product[:country_of_origin] = @product.country_name
     if @product.save && @product_image.save
       redirect_to product_path(@product)
     else
       render :new
-    end  
+    end
   end
-  
+
   def edit
   end
 
@@ -53,7 +53,7 @@ class Admin::ProductsController < ApplicationController
   def is_admin?
     redirect_to root_path unless current_user.is_admin
   end
-  
+
   def product_params
     params.require(:product).permit(:name, :description, :age_group, :country_of_origin, :category, :brand, :price, :stock_quantity)
   end

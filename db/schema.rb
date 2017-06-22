@@ -15,6 +15,23 @@ ActiveRecord::Schema.define(version: 20170621141626) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cart_lists", force: :cascade do |t|
+    t.integer "purchase_quantity", null: false
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_cart_lists_on_product_id"
+    t.index ["user_id"], name: "index_cart_lists_on_user_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "product_images", force: :cascade do |t|
     t.string "image_url", null: false
     t.bigint "product_id", null: false
@@ -48,7 +65,7 @@ ActiveRecord::Schema.define(version: 20170621141626) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "last_name"
     t.integer "telephone"
     t.string "address"
     t.boolean "is_admin", default: false
@@ -60,5 +77,8 @@ ActiveRecord::Schema.define(version: 20170621141626) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cart_lists", "products"
+  add_foreign_key "cart_lists", "users"
+  add_foreign_key "carts", "users"
   add_foreign_key "product_images", "products"
 end
