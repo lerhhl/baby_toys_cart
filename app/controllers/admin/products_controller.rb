@@ -11,10 +11,11 @@ class Admin::ProductsController < ApplicationController
   end
   
   def create
+    product_images_build  
     @product = Product.new(product_params)
     @product[:country_of_origin] = @product.country_name
-    if @product.save
-      redirect_to admin_product_path(@product)
+    if @product.save && @product_image.save
+      redirect_to product_path(@product)
     else
       render :new
     end  
@@ -24,10 +25,21 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
-    if @product.update(product_params_update)
-      redirect_to admin_product_path(@product)
+    if product_image_params.empty?
+      if @product.update(product_params_update)
+        product_images_delete
+        redirect_to product_path(@product)
+      else
+        render :edit
+      end
     else
-      render :edit
+      product_images_build
+      if @product.update(product_params_update) && @product_image.save
+        product_images_delete
+        redirect_to product_path(@product)
+      else
+        render :edit
+      end
     end
   end
 
@@ -49,6 +61,24 @@ class Admin::ProductsController < ApplicationController
   def product_params_update
     params.require(:product)["country_of_origin"] = ISO3166::Country[params.require(:product)["country_of_origin"]].translations[I18n.locale.to_s] || country.name
     params.require(:product).permit(:name, :description, :age_group, :country_of_origin, :category, :brand, :price, :stock_quantity)
+  end
+
+  def product_images_build
+    @product_image = @product.product_images.build(product_image_params)
+  end
+
+  def product_image_params
+    params.require(:product).permit(:image_url)
+  end
+
+  def product_images_delete
+    delete_image_arr = params[:selected_image_id]
+    unless delete_image_arr.nil?
+      delete_image_arr.each do |image_id|
+        @product_image = ProductImage.find(image_id)
+        @product_image.destroy
+      end
+    end
   end
 
   def set_product

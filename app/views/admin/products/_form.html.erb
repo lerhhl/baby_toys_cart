@@ -17,7 +17,7 @@
       <% if @product.country_of_origin == nil %>
         <td><%= f.country_select :country_of_origin, { include_blank: 'Select a country' }, { class: 'country-select-box' } %></td>
       <% else %>
-        <td><%= f.country_select :country_of_origin, { include_blank: "#{@product.country_of_origin}" }, { class: 'country-select-box' } %></td>
+        <td><%= f.country_select :country_of_origin, { priority_countries: ["#{@product.country_of_origin}","China","Indonesia","Malaysia","Singapore","Thailand"] }, { class: 'country-select-box' } %></td>
       <% end %>
     </tr>    
     <tr>
@@ -36,6 +36,20 @@
       <td><%= f.label :stock_quantity %></td>
       <td><%= f.number_field :stock_quantity %></td>
     </tr>
+    <tr>
+      <td><%= f.label "New image" %></td>
+      <td><%= f.file_field :image_url %></td>
+    </tr>
+
+    <% @product.product_images.each_with_index do |image, index| %>
+    <tr>
+      <td><%= f.label "Image #{index + 1}"%></td>
+      <td>
+      <%= image_tag image.image_url, size: "200", class:"img-thumbnail" %>
+      delete? <%= check_box_tag "selected_image_id[]", image.id %></td>
+    </tr>
+    <% end %>
+    
     <tr>
       <td colspan="2"><%= f.submit %></td>
     </tr>

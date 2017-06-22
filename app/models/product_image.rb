@@ -1,7 +1,7 @@
 class ProductImage < ApplicationRecord
-  mount_uploader :product_image, ImageUploader
+  mount_uploader :image_url, ImageUploader
 
-  validates :product_url, presence: true
+  validates :image_url, presence: true
 
   belongs_to :product
 

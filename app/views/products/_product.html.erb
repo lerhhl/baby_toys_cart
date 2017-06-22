@@ -5,6 +5,15 @@
 <% end %>
   <br><br>
   <ul>
+    <% if @product.product_images.empty? %>
+      <%= image_tag "default_product_image.png", size: "200", class:"img-thumbnail" %>
+    <% else %>
+      <div>
+      <% @product.product_images.each do |image| %>
+        <%= image_tag image.image_url, size: "200", class:"img-thumbnail" %>
+      <% end %>
+      </div>
+    <% end %>
     <li>Name: <%= @product.name.capitalize %></li>
     <li>Description: <%= @product.description.capitalize %></li>
     <li>Country of origin: <%= @product.country_of_origin.capitalize %></li>

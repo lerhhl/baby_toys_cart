@@ -18,7 +18,5 @@
 
 .byebug_history
 .env
-<<<<<<< HEAD
 coverage
-=======
->>>>>>> Add facebook omniauth
+/public/uploads/*
