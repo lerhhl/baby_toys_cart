@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20170623135554) do
 
   # These are extensions that must be enabled in order to support this database
@@ -99,11 +98,6 @@ ActiveRecord::Schema.define(version: 20170623135554) do
 
   add_foreign_key "cart_lists", "carts"
   add_foreign_key "cart_lists", "products"
-<<<<<<< HEAD
-=======
-  add_foreign_key "cart_lists", "users", column: "cart_id"
-  add_foreign_key "carts", "users"
->>>>>>> Add session cart
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
   add_foreign_key "orders", "users"
