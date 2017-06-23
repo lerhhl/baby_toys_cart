@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  it { should have_one(:cart) }
+  # it { should have_one(:cart) }
 
   describe 'validate password length' do
     it { should validate_length_of(:password).is_at_least(6) }
