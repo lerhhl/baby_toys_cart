@@ -1,3 +1,10 @@
 @import "bootstrap/**/*";
 @import "bootstrap-sprockets";
-@import "bootstrap"
+@import "bootstrap";
+
+img.product_image_index {
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px;
+}

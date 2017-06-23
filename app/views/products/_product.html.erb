@@ -6,7 +6,7 @@
   <br><br>
   <ul>
     <% if @product.product_images.empty? %>
-      <%= image_tag "default_product_image.png", size: "200", class:"img-thumbnail" %>
+      <%= image_tag "default_product_image.jpg", size: "200", class:"img-thumbnail" %>
     <% else %>
       <div>
       <% @product.product_images.each do |image| %>
