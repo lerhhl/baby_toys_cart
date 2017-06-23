@@ -8,12 +8,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :email, :provider, :uid ])
   end
 
-  # def current_cart
-  #   Cart.find(session[:cart_id])
-  #   rescue ActiveRecord::RecordNotFound
-  #   cart = Cart.create
-  #   session[:cart_id] = cart.id
-  # end
+  def current_cart
+    Cart.find(session[:cart_id])
+    rescue ActiveRecord::RecordNotFound
+    cart = Cart.create
+    session[:cart_id] = cart.id
+  end
 
 
   # def current_cart
@@ -40,29 +40,22 @@ class ApplicationController < ActionController::Base
   #   end
   # end
 
-  def current_cart
-    # if user is logged in
-      @user = current_user
-      # checking user to see if account is confirmed and verified
+  #application controller method of finding current_users cart
+  # def current_cart
+  #   @user = current_user
+  #   if Cart.find_by(user_id: @user) != nil
+  #     cart = Cart.find_by(user_id: @user)
+  #     session[:cart_id] = cart.id
+  #     cart.save
+  #     Cart.find(session[:cart_id])
+  #   else
+  #     cart = Cart.create!
+  #     # cart.user_id = @user
+  #     session[:cart_id] = cart.id
+  #     # Cart.find(session[:cart_id])
+  #   end
+  # end
 
-        # checking if user already has cart in cart database
-        if Cart.find_by(user_id: @user) != nil
-          # find a row in the database where users_id: equal to @user.id
-          # where clause does not work here
-          cart = Cart.find_by(user_id: @user)
-          session[:cart_id] = cart.id
-          cart.save
-          #establish Cart session cart for user
-          Cart.find(session[:cart_id])
-        else
-          # create a new Cart Object for user.assign current_user's id to cart object
-          cart = Cart.new
-          cart.user_id = @user
-          # save it to get cart id assign session[:cart_id] == cart.id
-          cart.save
-          session[:cart_id] = cart.id
-        end
-      end
 
 
 end
