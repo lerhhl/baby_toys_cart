@@ -10,7 +10,7 @@ User.find_or_create_by(email: "admin@admin.com") do |user|
 end
 
 # Products - Create Products
-Product.create(name: Faker::ChuckNorris.fact, price: 1.00, country_of_origin: "Singapore", brand: "lego", age_group: "3-4", category: "puzzle", description: "puzzle for family", stock_quantity: 50 )
+#Product.create(name: Faker::Book.title, price: 1.00, country_of_origin: "Singapore", brand: "Lego", age_group: "3-4", category: "puzzle", description: "puzzle for family", stock_quantity: 50 )
 
 product_count = 100
 if Product.count < product_count + 1

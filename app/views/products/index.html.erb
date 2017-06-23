@@ -1,17 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <h1> Products index</h1>
+    <div class="col-md-12">
+      <h2> Products list</h2>
+      <br>
       <% @products.each do |product| %>
-        <div><%= link_to product.name, product_path(product.id) %></div>
-        <li> Description: <%= product.description %> </li>
-        <li> Age_group: <%= product.age_group %> </li>
-        <li> Price: $<%= product.price %> </li>
-        <li> Stock quantity: <%= product.stock_quantity %> </li>
-        <br>
+        <div class="col-md-4">
+          <% if product.product_images.empty? %>
+            <%= image_tag "default_product_image.jpg", class:"product_image_index" %>
+          <% else %>
+            <div>
+              <% image = product.product_images.first %>
+              <%= image_tag image.image_url, class:"product_image_index" %>
+            </div>
+          <% end %>
+          <div><%= link_to product.name, product_path(product.id) %></div>
+          <li> Age_group: <%= product.age_group %> </li>
+          <li> Price: $<%= product.price %> </li>
+          <li> Stock quantity: <%= product.stock_quantity %> </li>
+          <br><br>
+        </div>
       <% end %>
     </div>
   </div>
 </div>
-
-
