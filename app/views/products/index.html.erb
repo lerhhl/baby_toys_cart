@@ -5,15 +5,27 @@
       <br>
       <% @products.each do |product| %>
         <div class="col-md-4">
-          <% if product.product_images.empty? %>
-            <%= image_tag "default_product_image.jpg", class:"product_image_index" %>
+          <% if user_signed_in? && current_user.is_admin %>
+            <%= link_to admin_product_path(product) do %>
+              <% if product.product_images.empty? %>
+                <%= image_tag "default_product_image.jpg", class:"product_image_index" %>
+              <% else %>
+                <% image = product.product_images.first %>
+                <%= image_tag image.image_url, class:"product_image_index" %>
+              <% end %>
+            <% end %>
+            <div><%= link_to product.name, admin_product_path(product.id) %></div>          
           <% else %>
-            <div>
-              <% image = product.product_images.first %>
-              <%= image_tag image.image_url, class:"product_image_index" %>
-            </div>
+            <%= link_to product_path(product) do %>
+              <% if product.product_images.empty? %>
+                <%= image_tag "default_product_image.jpg", class:"product_image_index" %>
+              <% else %>
+                <% image = product.product_images.first %>
+                <%= image_tag image.image_url, class:"product_image_index" %>
+              <% end %>
+            <% end %>
+            <div><%= link_to product.name, product_path(product.id) %></div>
           <% end %>
-          <div><%= link_to product.name, product_path(product.id) %></div>
           <li> Age_group: <%= product.age_group %> </li>
           <li> Price: $<%= product.price %> </li>
           <li> Stock quantity: <%= product.stock_quantity %> </li>

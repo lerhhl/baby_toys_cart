@@ -9,6 +9,17 @@ User.find_or_create_by(email: "admin@admin.com") do |user|
   user.address = "address"
 end
 
+# Users - Create standard user
+User.find_or_create_by(email: "demo@demo.com") do |user|
+  user.first_name = "demo"
+  user.last_name = "demostrator"
+  user.email = "demo@demo.com"
+  user.password = "123456"
+  user.is_admin = false
+  user.telephone = 12345678
+  user.address = "address"
+end
+
 # Products - Create Products
 #Product.create(name: Faker::Book.title, price: 1.00, country_of_origin: "Singapore", brand: "Lego", age_group: "3-4", category: "puzzle", description: "puzzle for family", stock_quantity: 50 )
 
