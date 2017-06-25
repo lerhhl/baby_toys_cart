@@ -16,4 +16,9 @@ class OrderMailer < ApplicationMailer
     mail to: @user.email, subject: "Order Id: #{@order.id} status has been changed"
   end
 
+  def user_confirmation(user)
+    @user = user
+    mail to: @user.email, subject: "Your Baby Toys online account is created."
+  end
+
 end
