@@ -1,13 +1,38 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h1> Cart </h1>
-        <ol>
-          <% @cartlist.each do |list| %>
-          <% @product = Product.find(list.product_id) %>
-          <li><%= @product.name %>  <%= list.purchase_quantity %></li>
-          <% end %>
-        </ol>
+      <div class="panel panel-default">
+        <div class="panel-heading">My Cart</div>
+          <table class="table">
+            <thead>
+              <th>Name of product</th>
+              <th>Price/unit</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+              <th></th>
+            </thead>
+            <tbody>
+              <% @cart_value = 0 %>
+              <% @cartlists.each do |cartlist| %>
+                <% @product = Product.find(cartlist.product_id) %>
+                <% @product_value = (@product.price * cartlist.purchase_quantity) %>
+                <tr>
+                  <td><%= @product.name %></td>
+                  <td>S$<%= @product.price %></td>
+                  <td><%= cartlist.purchase_quantity %></td>
+                  <td>S$<%= @product_value %></td>
+                  <td><%= link_to "Delete item", my_cart_cart_list_path(cartlist), method: :delete, data:{ confirm: "Are you sure?" } %></td>
+                </tr>
+                <% @cart_value += @product_value %>
+              <% end %>
+            </tbody>
+            <tr>
+              <td colspan="1"></td><td colspan="2">Grandtotal:</td><td>S$<%= @cart_value %></td>
+            </tr>  
+          </table>
+      </div>
+      <%= link_to "Checkout", new_my_order_path, class:"btn btn-primary btn-block" %>
+      <br>
       <%= link_to "Back", :back %>
     </div>
   </div>

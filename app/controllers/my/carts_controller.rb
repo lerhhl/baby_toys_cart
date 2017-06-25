@@ -1,7 +1,8 @@
 class My::CartsController < ApplicationController
+  before_action :authenticate_user!
 
   def show
-    @cartlist = CartList.where(user_id: current_user.id)
+    @cartlists = CartList.where(user_id: current_user.id)
   end
 
 end

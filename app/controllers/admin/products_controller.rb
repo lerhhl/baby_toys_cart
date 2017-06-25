@@ -4,6 +4,7 @@ class Admin::ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def show
+    @orders = @product.orders
   end
 
   def new
@@ -12,7 +13,7 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    product_images_build  
+    product_images_build
     @product[:country_of_origin] = @product.country_name
     if @product.save && @product_image.save
       redirect_to product_path(@product)
@@ -68,7 +69,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_image_params
-    params.require(:product).permit(:image_url)
+    params.require(:product).permit(:image_url, :product_id)
   end
 
   def product_images_delete

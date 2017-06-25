@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Order List</div>
+        <table class="table">
+          <thead>
+            <th>Name of product</th>
+            <th>Price/unit</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </thead>
+          <tbody>
+            <% @order_value = 0 %>
+            <% @cartlists.each do |cartlist| %>
+              <% @product = Product.find(cartlist.product_id) %>
+              <% @product_value = (@product.price * cartlist.purchase_quantity) %>
+              <tr>
+                <td><%= @product.name %></td>
+                <td>S$<%= @product.price %></td>
+                <td><%= cartlist.purchase_quantity %></td>
+                <td>S$<%= @product_value %></td>
+              </tr>
+              <% @order_value += @product_value %>
+            <% end %>
+          </tbody> 
+          <tr>
+            <td colspan="1"></td><td colspan="2">Grandtotal:</td><td>S$<%= @order_value %></td>
+          </tr>             
+        </table>
+      </div>
+      <div>
+        <%= link_to "Confirm order", my_orders_path, method: :post, class:"btn btn-primary" %>
+        <%= link_to "Edit order", my_cart_path, class:"btn btn-primary" %>
+      </div>
+      <br>
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+</div>

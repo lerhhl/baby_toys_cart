@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   has_one :cart, dependent: :destroy
   has_many :cart_lists, dependent: :destroy
-  # has_many :transactions, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

@@ -1,11 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <%= render partial: "products/product" %>
-      <div><%= link_to "Back", :back %></div>
-      <br><br>
-    </div>
-    <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">All Orders</div>
         <table class="table">
@@ -25,6 +20,7 @@
           </tbody>  
         </table>
       </div>
+      <%= link_to "Home", root_path %>
     </div>
   </div>
 </div>

@@ -1,13 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <%= render partial: "products/product" %>
-      <div><%= link_to "Back", :back %></div>
-      <br><br>
-    </div>
-    <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">All Orders</div>
+        <div class="panel-heading">My Orders</div>
         <table class="table">
           <thead>
             <th>Order no.</th>
@@ -15,9 +10,9 @@
             <th>Status</th>
           </thead>
           <tbody>
-            <% @orders.order(:status).reverse.each do |order| %>
+            <% @orders.each do |order| %>
               <tr>
-                <td><%= link_to "#{order.id}", admin_order_path(order) %></td>
+                <td><%= link_to "#{order.id}", my_order_path(order) %></td>
                 <td>S$<%= order.order_value %></td>
                 <td><%= order.status %></td>
               </tr>
@@ -25,6 +20,7 @@
           </tbody>  
         </table>
       </div>
+      <%= link_to "Home", root_path %>
     </div>
   </div>
 </div>
