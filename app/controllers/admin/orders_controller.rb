@@ -17,6 +17,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order.update(order_params)
+    OrderMailer.order_status_update(@order).deliver_now
     redirect_to admin_order_path(@order)
   end
 
