@@ -1,6 +1,4 @@
 class My::CartListsController < ApplicationController
-  # include CurrentCart
-  # before_action :set_cart, only: [:create, :update, :destroy]
 
   def new
     @cartlist = CartList.new
@@ -8,8 +6,9 @@ class My::CartListsController < ApplicationController
 
   def create
     @product = Product.find(params[:cart_list][:product_id])
+    @cart = current_cart
     if params[:cart_list][:purchase_quantity].to_i <= @product.stock_quantity
-      @cartlist = CartList.new(user_id: current_user.id, product_id: params[:cart_list][:product_id], purchase_quantity: params[:cart_list][:purchase_quantity])
+      @cartlist = CartList.new(cart_id: @cart.id, product_id: params[:cart_list][:product_id], purchase_quantity: params[:cart_list][:purchase_quantity])
       if @cartlist.save!
         flash[:notice] = "Product successfully added to shopping cart"
         redirect_back(fallback_location: root_path)
