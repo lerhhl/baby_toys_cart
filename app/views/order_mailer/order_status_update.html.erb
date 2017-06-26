@@ -1,0 +1,6 @@
+<h3>Order status update</h3>
+
+<p>
+  <%= @Greeting %> Your order id: <%= "#{@order.id}" %> has been changed to <%= "#{@order.status}" %>.
+  You can go to <%= link_to 'Your order', my_order_url(@order) %> to view the order details.
+</p>

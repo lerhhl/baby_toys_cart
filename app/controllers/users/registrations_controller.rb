@@ -8,6 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
+    OrderMailer.user_confirmation(@user).deliver_now    
   end
 
   def edit

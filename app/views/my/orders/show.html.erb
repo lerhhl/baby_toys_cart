@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">Order no. <%= @order.id %></div>
+        <div class="panel-heading">
+          <p>Order no. <%= @order.id %><p>
+          <p>Status: <%= @order.status.capitalize %></p>
+        </div>
           <table class="table">
             <thead>
               <th>Name of product</th>

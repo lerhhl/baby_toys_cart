@@ -12,7 +12,12 @@ class My::OrdersController < ApplicationController
 
   def new
     @cartlists = CartList.where(user_id: current_user.id)
-    @order = Order.new
+    if @cartlists.empty?
+      flash[:notice] = "No product in your shopping cart"
+      redirect_to my_cart_path
+    else
+      @order = Order.new
+    end
   end
 
   def create
@@ -28,6 +33,7 @@ class My::OrdersController < ApplicationController
       @order_value += Product.find(cartlist.product_id).price * cartlist.purchase_quantity
     end
     @order.update(order_value: @order_value)
+    OrderMailer.order_confirmation(@order).deliver_now
     redirect_to root_path
   end
 
