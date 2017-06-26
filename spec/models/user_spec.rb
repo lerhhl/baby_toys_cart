@@ -17,8 +17,16 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of (:first_name) }
   end
 
-  # describe 'validates last_name presence' do
-  #   it { should validate_presence_of (:last_name) }
-  # end
+  describe 'validates has one cart' do
+    it { should have_one (:cart) }
+  end
+  
+  describe 'validates has many cartlists' do
+    it { should have_many (:cart_lists) }
+  end
+
+  describe 'validates has many orders' do
+    it { should have_many (:orders) }
+  end
 
 end
