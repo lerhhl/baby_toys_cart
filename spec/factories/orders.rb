@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :transaction do
+  factory :order do
     stauts 1
     reference ""
   end
