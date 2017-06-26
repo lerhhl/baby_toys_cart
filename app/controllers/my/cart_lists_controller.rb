@@ -29,4 +29,8 @@ class My::CartListsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  # def find_cart
+  #   session[:cart] ||= Cart.new
+  # end
+
 end
