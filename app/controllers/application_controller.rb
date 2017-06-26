@@ -8,34 +8,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :email, :provider, :uid ])
   end
 
-  # def current_cart
-  #   cart = Cart.find_by(session[:cart_id])
-  #   if !cart && !current_user
-  #     cart = Cart.create
-  #     session[:cart_id] = cart.id
-  #     cart = Cart.find_by(session[:cart_id])
-  #   end
-  #   if cart && current_user && cart.user_id.nil?
-  #     cart.update(user_id: current_user.id)
-  #     cart = Cart.find_by(user_id: current_user.id)
-  #   end
-  #   cart
-  # end
-
-
-
-
   def current_cart
     cart = Cart.find_by(session[:cart_id])
     rescue ActiveRecord::RecordNotFound
-    cart = Cart.create
-    session[:cart_id] = cart.id
     if !cart && !current_user
       cart = Cart.create
       session[:cart_id] = cart.id
-      cart = Cart.find_by(session[:cart_id])
     end
-    if cart && current_user
+    if cart && current_user && cart.user_id.nil?
       cart.update(user_id: current_user.id)
       cart = Cart.find_by(user_id: current_user.id)
     end
