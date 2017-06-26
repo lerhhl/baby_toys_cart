@@ -15,47 +15,4 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = cart.id
   end
 
-
-  # def current_cart
-  #   if session[:cart_id]
-  #     @current_cart ||= Cart.find([:user_id])
-  #   end
-  #   if session[:cart_id].nil?
-  #     @current_cart = Cart.create!
-  #     session[:cart_id] = @current_cart.id
-  #   end
-  #   @current_cart
-  # end
-
-  # def current_cart
-  #   @user = current_user
-  #   if current_user.present? && Cart.find_by(user_id: @user.id) != nil
-  #     cart = Cart.find_by(user_id: @user.id)
-  #     session[:cart_id] = cart.id
-  #     cart.save
-  #     Cart.find(session[:cart_id])
-  #   else
-  #     cart = Cart.create!
-  #     session[:cart_id] = cart.id
-  #   end
-  # end
-
-  #application controller method of finding current_users cart
-  # def current_cart
-  #   @user = current_user
-  #   if Cart.find_by(user_id: @user) != nil
-  #     cart = Cart.find_by(user_id: @user)
-  #     session[:cart_id] = cart.id
-  #     cart.save
-  #     Cart.find(session[:cart_id])
-  #   else
-  #     cart = Cart.create!
-  #     # cart.user_id = @user
-  #     session[:cart_id] = cart.id
-  #     # Cart.find(session[:cart_id])
-  #   end
-  # end
-
-
-
 end

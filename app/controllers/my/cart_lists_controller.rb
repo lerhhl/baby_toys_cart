@@ -8,7 +8,7 @@ class My::CartListsController < ApplicationController
     @product = Product.find(params[:cart_list][:product_id])
     @cart = current_cart
     if params[:cart_list][:purchase_quantity].to_i <= @product.stock_quantity
-      @cartlist = CartList.new(cart_id: @cart.id, product_id: params[:cart_list][:product_id], purchase_quantity: params[:cart_list][:purchase_quantity])
+      @cartlist = CartList.new(cart_id: current_cart.id, product_id: params[:cart_list][:product_id], purchase_quantity: params[:cart_list][:purchase_quantity])
       if @cartlist.save!
         flash[:notice] = "Product successfully added to shopping cart"
         redirect_back(fallback_location: root_path)
@@ -18,7 +18,7 @@ class My::CartListsController < ApplicationController
     else
       flash[:notice] = "Stock is not enough"
       redirect_to product_path(@product)
-    end  
+    end
   end
 
   def destroy
@@ -26,7 +26,7 @@ class My::CartListsController < ApplicationController
     @cartlist.destroy
     redirect_back(fallback_location: root_path)
   end
-  
+
   # def find_cart
   #   session[:cart] ||= Cart.new
   # end
