@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170623044056) do
+ActiveRecord::Schema.define(version: 20170623135554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,13 +98,8 @@ ActiveRecord::Schema.define(version: 20170623044056) do
 
   add_foreign_key "cart_lists", "carts"
   add_foreign_key "cart_lists", "products"
-<<<<<<< HEAD
-  add_foreign_key "cart_lists", "users"
-  add_foreign_key "carts", "users"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
   add_foreign_key "orders", "users"
-=======
->>>>>>> remotes/origin/feature/session_cart
   add_foreign_key "product_images", "products"
 end

@@ -16,9 +16,9 @@ RSpec.describe User, type: :model do
   describe 'validates first_name presence' do
     it { should validate_presence_of (:first_name) }
   end
-
-  # describe 'validates last_name presence' do
-  #   it { should validate_presence_of (:last_name) }
-  # end
+  
+  describe 'validates has many orders' do
+    it { should have_many (:orders) }
+  end
 
 end

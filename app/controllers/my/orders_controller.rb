@@ -11,7 +11,7 @@ class My::OrdersController < ApplicationController
   end
 
   def new
-    @cartlists = CartList.where(user_id: current_user.id)
+    @cartlists = CartList.where(cart_id: current_cart)
     if @cartlists.empty?
       flash[:notice] = "No product in your shopping cart"
       redirect_to my_cart_path
@@ -21,7 +21,7 @@ class My::OrdersController < ApplicationController
   end
 
   def create
-    @cartlists = CartList.where(user_id: current_user.id)
+    @cartlists = CartList.where(cart_id: current_cart.id)
     @order = Order.create(user_id: current_user.id)
     @order_value = @order.order_value
     @cartlists.each do |cartlist|

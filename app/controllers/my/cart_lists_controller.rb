@@ -6,6 +6,7 @@ class My::CartListsController < ApplicationController
 
   def create
     @product = Product.find(params[:cart_list][:product_id])
+    @cart = current_cart
     if params[:cart_list][:purchase_quantity].to_i <= @product.stock_quantity
       @cartlist = CartList.new(cart_id: @cart.id, product_id: params[:cart_list][:product_id], purchase_quantity: params[:cart_list][:purchase_quantity])
       if @cartlist.save!
