@@ -10,23 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170623135554) do
+ActiveRecord::Schema.define(version: 20170623044056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cart_lists", force: :cascade do |t|
     t.integer "purchase_quantity", null: false
-    t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cart_id"
+    t.index ["cart_id"], name: "index_cart_lists_on_cart_id"
     t.index ["product_id"], name: "index_cart_lists_on_product_id"
-    t.index ["user_id"], name: "index_cart_lists_on_user_id"
   end
 
   create_table "carts", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -96,11 +96,15 @@ ActiveRecord::Schema.define(version: 20170623135554) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cart_lists", "carts"
   add_foreign_key "cart_lists", "products"
+<<<<<<< HEAD
   add_foreign_key "cart_lists", "users"
   add_foreign_key "carts", "users"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
   add_foreign_key "orders", "users"
+=======
+>>>>>>> remotes/origin/feature/session_cart
   add_foreign_key "product_images", "products"
 end

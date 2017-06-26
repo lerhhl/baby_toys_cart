@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :password, length: { minimum: 6 }
 
-  has_one :cart, dependent: :destroy
+  # has_one :cart, dependent: :destroy
   has_many :cart_lists, dependent: :destroy
   has_many :orders, dependent: :destroy
 
