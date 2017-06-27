@@ -8,7 +8,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    OrderMailer.user_confirmation(@user).deliver_now    
+    OrderMailer.user_confirmation(@user).deliver_now
+    Cart.create(user_id: @user.id)   
   end
 
   def edit
