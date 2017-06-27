@@ -6,8 +6,13 @@ class My::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find_by(params[:id], user_id: current_user.id)
-    @ordered_products = @order.order_products
+    @order = Order.find_by(id: params[:id], user_id: current_user.id)
+    if @order == nil
+      flash[:notice] = "Unauthorised user"
+      redirect_to root_path
+    else
+      @ordered_products = @order.order_products
+    end
   end
 
   def new
