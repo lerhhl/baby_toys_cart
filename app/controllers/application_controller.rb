@@ -9,31 +9,55 @@ class ApplicationController < ActionController::Base
   end
 
   def current_cart
-    if current_user
-      user_cart = Cart.find_by(user_id: current_user.id)
-    end
-      session_cart = Cart.find(session[:cart_id])
-      rescue ActiveRecord::RecordNotFound
 
+    byebug
 
-    if !current_user && !session_cart
+    if current_user && Cart.find_by(user_id: current_user.id) == nil
+      user_cart = Cart.create(user_id: current_user.id)
+    elsif current_user
+      if !session[:cart_id]
+        user_cart = Cart.create(user_id: current_user.id)
+      else
+        user_cart = Cart.find_by(user_id: current_user.id)
+        @cartlists = CartList.where(cart_id: session[:cart_id])
+        @cartlists.each do |cartlist|
+          cartlist.update(cart_id: user_cart.id)
+        end
+        session[:cart_id] = nil
+        user_cart
+      end
+    elsif session[:cart_id] == nil
       session_cart = Cart.create!
       session[:cart_id] = session_cart.id
-
-    elsif !current_user && session_cart
-      session_cart
-
-    elsif current_user && user_cart
-      user_cart
-
-    elsif current_user && session_cart
-      session_cart.update(user_id: current_user.id)
-      user_cart = session_cart
-
     else
-      cart = Cart.create(user_id: current_user.id)
-      cart = Cart.find_by(user_id: current_user.id)
+      session_cart = Cart.find(session[:cart_id])
     end
-  end 
+
+
+
+
+
+
+      # session_cart = Cart.find(session[:cart_id])
+      # rescue ActiveRecord::RecordNotFound
+
+
+    # if !current_user && !session_cart
+    #   byebug
+    #   session_cart = Cart.create!
+    #   session[:cart_id] = session_cart.id
+
+    # if !current_user && session_cart
+    #   session_cart
+
+    # elsif current_user && user_cart
+    #   user_cart
+
+
+    # else
+    #   cart = Cart.create(user_id: current_user.id)
+    #   cart = Cart.find_by(user_id: current_user.id)
+    # end
+  end
 
 end
