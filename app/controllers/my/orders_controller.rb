@@ -6,7 +6,7 @@ class My::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find_by(params[:id], user_id: current_user.id)
     @ordered_products = @order.order_products
   end
 
