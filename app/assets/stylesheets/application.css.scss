@@ -1,10 +1,32 @@
-@import "bootstrap/**/*";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap/**/*";
 
 img.product_image_index {
   height: 150px;
   border: 1px solid black;
   border-radius: 3px;
   padding: 5px;
+}
+
+#toys_list{
+  text-align: center;
+  font-family: 'PT Serif', serif;
+  font-size: 10vw;
+  font-style: italic;
+}
+
+#toys{
+  text-align: center;
+}
+
+#banner{
+  background: image-url('toys_banner.png');
+  font-weight: bold;
+  // height: 10vh;
+  a {
+    font-size: 1.5em;
+    color: white;
+    margin-top: 15px;
+  }
 }
