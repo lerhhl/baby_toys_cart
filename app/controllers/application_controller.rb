@@ -9,10 +9,31 @@ class ApplicationController < ActionController::Base
   end
 
   def current_cart
-    Cart.find(session[:cart_id])
-    rescue ActiveRecord::RecordNotFound
-    cart = Cart.create
-    session[:cart_id] = cart.id
-  end
+    if current_user
+      user_cart = Cart.find_by(user_id: current_user.id)
+    end
+      session_cart = Cart.find(session[:cart_id])
+      rescue ActiveRecord::RecordNotFound
+
+
+    if !current_user && !session_cart
+      session_cart = Cart.create!
+      session[:cart_id] = session_cart.id
+
+    elsif !current_user && session_cart
+      session_cart
+
+    elsif current_user && user_cart
+      user_cart
+
+    elsif current_user && session_cart
+      session_cart.update(user_id: current_user.id)
+      user_cart = session_cart
+
+    else
+      cart = Cart.create(user_id: current_user.id)
+      cart = Cart.find_by(user_id: current_user.id)
+    end
+  end 
 
 end

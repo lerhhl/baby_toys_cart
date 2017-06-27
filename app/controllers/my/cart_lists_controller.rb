@@ -1,4 +1,6 @@
 class My::CartListsController < ApplicationController
+  # include CurrentCart
+  # before_action :set_cart, only: [:create, :update, :destroy]
 
   def new
     @cartlist = CartList.new
