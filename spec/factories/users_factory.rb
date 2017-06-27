@@ -4,7 +4,7 @@ FactoryGirl.define do
     sequence(:last_name) { |n| "last_name#{n}" }
     sequence(:email) { |n| "email#{n}@example.com" }
     sequence(:address) { |n| "address#{n}" }
-    is_admin true
+    is_admin false
     telephone 1234567
     password "123123"
   end
