@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :order do
-    stauts 1
-    reference ""
+    association :user, factory: :user
+    order_value 30
+    status 1
+
   end
 end
