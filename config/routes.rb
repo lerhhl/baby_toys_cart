@@ -20,4 +20,6 @@ Rails.application.routes.draw do
     resources :products
   end
 
+  resource :payments, only: [:new, :create, :show]
+
 end

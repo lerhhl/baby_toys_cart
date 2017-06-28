@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <% if @result %>
+        <div class="icon">
+          <img src=<%= asset_path("#{@result[:icon]}.svg") %> alt="">
+        </div>
+
+        <h1><%= @result[:header] %></h1>
+        <section>
+          <p><%= @result[:message] %></p>
+        </section>
+      <% else %>
+        <section>
+          <p>Test another transaction or see the Braintree API response.</p>
+      </section>
+
+      <% end %>
+
+      <section>
+        <a class="btn btn-primary btn-block" href="/my/orders">
+          <span>Make another payment</span>
+        </a>
+      </section>
+    </div>
+
+    <div class="col-md-5, col-md-offset-7">
+      <article class="content compact">
+        <section>
+          <h5>Transaction Details</h5>
+
+          <table cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <th>id</th>
+                <td><%= @transaction.id %></td>
+              </tr>
+              <tr>
+                <th>type</th>
+                <td><%= @transaction.type %></td>
+              </tr>
+              <tr>
+                <th>amount</th>
+                <td><%= @transaction.amount %></td>
+              </tr>
+              <tr>
+                <th>status</th>
+                <td><%= @transaction.status %></td>
+              </tr>
+              <tr>
+                <th>created_at</th>
+                <td><%= @transaction.created_at %></td>
+              </tr>
+              <tr>
+                <th>updated_at</th>
+                <td><%= @transaction.updated_at %></td>
+              </tr>
+              <tr>
+                <th>last_4</th>
+                <td><%= @transaction.credit_card_details.last_4 %></td>
+              </tr>
+              <tr>
+                <th>card_type</th>
+                <td><%= @transaction.credit_card_details.card_type %></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <% if @transaction.customer_details.id %>
+          <section>
+            <h5>Customer</h5>
+
+            <table cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr>
+                  <th>id</th>
+                  <td><%= @transaction.customer_details.id %></td>
+                </tr>
+                <tr>
+                  <th>first_name</th>
+                  <td><%= @transaction.customer_details.first_name %></td>
+                </tr>
+                <tr>
+                  <th>last_name</th>
+                  <td><%= @transaction.customer_details.last_name %></td>
+                </tr>
+                <tr>
+                  <th>email</th>
+                  <td><%= @transaction.customer_details.email %></td>
+                </tr>
+                <tr>
+                  <th>company</th>
+                  <td><%= @transaction.customer_details.company %></td>
+                </tr>
+                <tr>
+                  <th>website</th>
+                  <td><%= @transaction.customer_details.website %></td>
+                </tr>
+                <tr>
+                  <th>phone</th>
+                  <td><%= @transaction.customer_details.phone %></td>
+                </tr>
+                <tr>
+                  <th>fax</th>
+                  <td><%= @transaction.customer_details.fax %></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        <% end %>
+      </article>
+    </div>
+  </div>
+</div>
