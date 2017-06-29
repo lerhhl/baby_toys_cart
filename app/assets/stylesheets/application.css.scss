@@ -9,13 +9,6 @@ img.product_image_index {
   padding: 5px;
 }
 
-#toys_list{
-  text-align: center;
-  font-family: 'PT Serif', serif;
-  font-size: 10vw;
-  font-style: italic;
-}
-
 #toys{
   text-align: center;
 }
@@ -29,4 +22,191 @@ img.product_image_index {
     color: white;
     margin-top: 15px;
   }
+}
+
+@import url(https://fonts.googleapis.com/css?family=Sniglet|Raleway:900);
+
+
+body, html{
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	font-family: 'Sniglet', cursive;
+}
+
+#form{
+	height: 100%;
+	background-color: #98d4f3;
+	overflow: hidden;
+	position: relative;
+
+}
+form{
+	margin: 0 auto;
+	width: 500px;
+	padding-top: 20px;
+	color: black;
+	position: relative;
+
+
+}
+label, input, textarea{
+	display: block;
+}
+input, textarea{
+	width: 500px;
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	padding: 10px;
+	font-family: 'Sniglet', cursive;
+	font-size: 1em;
+	color: #676767;
+	transition: border 0.5s;
+	-webkit-transition: border 0.5s;
+	-moz-transition: border 0.5s;
+	-o-transition: border 0.5s;
+	border: solid 3px #98d4f3;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+
+}
+input:focus, textarea:focus{
+	border: solid 3px #77bde0;
+}
+
+textarea{
+	height: 100px;
+	resize: none;
+	overflow: auto;
+}
+input[type="submit"]{
+	background-color: #F90;
+	color: white;
+	height: 50px;
+	cursor: pointer;
+	margin-top: 5px;
+	font-size: 1.29em;
+	font-family: 'Sniglet', cursive;
+	-webkit-transition: background-color 0.5s;
+	-moz-transition: background-color 0.5s;
+	-o-transition: background-color 0.5s;
+	transition: background-color 0.5s;
+}
+input[type="submit"]:hover{
+	background-color: #e58f0e;
+
+}
+label{
+	font-size: 1.5em;
+	margin-top: 5px;
+	padding-left: 20px;
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.shop-card {
+  @include center;
+  width: 350px;
+  background: #f5f5f5;
+  box-shadow: 0 10px 20px rgba(0,0,0,.3);
+  overflow: hidden;
+  border-radius: 5px;
+  padding: 25px;
+  text-align: center;
+  z-index: 2;
+
+  figure {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    outline: none!important;
+
+    & img {
+      margin: -95px 0 -60px;
+      width: 100%;
+    }
+  }
+
+  .title {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 30px;
+    color: #23211f;
+    margin-bottom: 5px;
+  }
+
+  .desc {
+    font-size: 17px;
+    opacity: .8;
+    margin-bottom: 3px;
+  }
+
+  .cta {
+    padding: 20px 20px 5px;
+
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+
+  .price {
+    float: left;
+    color: #FF3100;
+    font-size: 22px;
+    font-weight: 900;
+    padding-top: 2px;
+    transition: color .3s ease-in-out;
+    margin-top: 4px;
+  }
+
+  .btn {
+    position: relative;
+    z-index: 1;
+    float: right;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #FF3100;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    line-height: .95;
+    border: none;
+    background: none;
+    outline: none;
+    border: 1px solid #FF3100;
+    border-radius: 20px;
+    overflow: hidden;
+
+    & .bg {
+      width: 101%;
+      height: 101%;
+      display: block!important;
+      z-index: -1;
+      opacity: 0;
+      transition: all .3s ease-in-out;
+      background: linear-gradient(135deg, #a61322, #d33f34);
+    }
+
+    &:hover {
+      color: #fff!important;
+      border: 1px solid transparent!important;
+
+      & .bg {
+        opacity: 1;
+      }
+    }
+
+  }
+
 }
