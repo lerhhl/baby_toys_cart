@@ -74,7 +74,7 @@ class Admin::ProductsController < ApplicationController
 
   def product_images_delete
     delete_image_arr = params[:selected_image_id]
-    delete_image_arr&.each do |image_id|
+    delete_image_arr.each do |image_id|
       @product_image = ProductImage.find(image_id)
       @product_image.destroy
     end
