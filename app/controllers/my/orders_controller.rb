@@ -1,4 +1,5 @@
 class My::OrdersController < ApplicationController
+
   before_action :authenticate_user!
 
   def index
@@ -7,8 +8,8 @@ class My::OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id], user_id: current_user.id)
-    if @order == nil
-      flash[:notice] = "Unauthorised user"
+    if @order.nil?
+      flash[:notice] = 'Unauthorised user'
       redirect_to root_path
     else
       @ordered_products = @order.order_products
@@ -18,7 +19,7 @@ class My::OrdersController < ApplicationController
   def new
     @cartlists = CartList.where(cart_id: current_cart)
     if @cartlists.empty?
-      flash[:notice] = "No product in your shopping cart"
+      flash[:notice] = 'No product in your shopping cart'
       redirect_to my_cart_path
     else
       @order = Order.new
@@ -34,7 +35,7 @@ class My::OrdersController < ApplicationController
       CartList.delete(cartlist.id)
       @product = Product.find(cartlist.product_id)
       @new_stock_quantity = @product.stock_quantity - cartlist.purchase_quantity
-      @product.update(stock_quantity:@new_stock_quantity)
+      @product.update(stock_quantity: @new_stock_quantity)
       @order_value += Product.find(cartlist.product_id).price * cartlist.purchase_quantity
     end
     @order.update(order_value: @order_value)
