@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+
   validates :name, :price, :country_of_origin, :brand, :age_group, :category, :description, :stock_quantity, presence: true
 
   has_many :product_images, dependent: :destroy
