@@ -18,9 +18,13 @@
       <% end %>
 
       <section>
+      <% if @result[:icon] == "success" %>
         <a class="btn btn-primary btn-block" href="/my/orders">
           <span>Make another payment</span>
         </a>
+      <% else %>
+      <%= link_to "Try again", new_payments_path(order_id: params[:order_id]), class:"btn btn-primary btn-block" %>
+      <% end %>
       </section>
     </div>
 

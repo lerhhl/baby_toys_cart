@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   has_many :products, through: :order_products
 
   enum status: {
-    "waiting for payment":  1,
+    "payment required":     1,
     "payment received":     2,
     "shipped":              3,
     "cancelled":            4

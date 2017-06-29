@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
+    super
   end
 
   def destroy

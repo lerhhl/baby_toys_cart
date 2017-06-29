@@ -32,13 +32,15 @@ class PaymentsController < ApplicationController
       }
     )
 
-    if result.success? || result.transaction
-      OrderMailer.payment_received(@order).deliver_now 
+    if result.success? && result.transaction
+      OrderMailer.payment_received(@order).deliver_now
+      @order.update(status: 2)
       redirect_to payments_path(id: result.transaction.id)
     else
       error_messages = result.errors.map { |error| "Error: #{error.code}: #{error.message}" }
       flash[:error] = error_messages
-      redirect_to new_payments_path
+      OrderMailer.payment_rejected(@order).deliver_now
+      redirect_to payments_path(id: result.transaction.id, order_id: @order.id)
     end
   end
 
@@ -49,13 +51,13 @@ class PaymentsController < ApplicationController
       result_hash = {
         :header => "Sweet Success!",
         :icon => "success",
-        :message => "Your test transaction has been successfully processed. See the Braintree API response and try again."
+        :message => "Your order has been successfully placed."
       }
     else
       result_hash = {
         :header => "Transaction Failed",
         :icon => "fail",
-        :message => "Your test transaction has a status of #{status}. See the Braintree API response and try again."
+        :message => "Your transaction has failed. Please try again."
       }
     end
   end
