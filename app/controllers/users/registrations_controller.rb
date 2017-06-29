@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     OrderMailer.user_confirmation(@user).deliver_now
-    Cart.create(user_id: @user.id)   
+    Cart.create(user_id: @user.id)
   end
 
   def edit
@@ -18,6 +18,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     super
+    # @user = User.find(current_user.id)
+    # email_changed = @user.email != params[:user][:email]
+    # is_facebook_account = !@user.provider.blank?
+    #
+    # successfully_updated = if !is_facebook_account
+    #   @user.update_with_password(params[:user])
+    # else
+    #   @user.update_without_password(params[:user])
+    # end
+    #
+    # if successfully_updated
+    #   sign_in @user, :bypass => true
+    #   redirect_to root_path
+    # else
+    #   render "edit"
+    # end
   end
 
   def destroy
@@ -33,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
