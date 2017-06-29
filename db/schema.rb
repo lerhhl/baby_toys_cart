@@ -10,95 +10,96 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_170_623_135_554) do
+ActiveRecord::Schema.define(version: 20170623135554) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'cart_lists', force: :cascade do |t|
-    t.integer 'purchase_quantity', null: false
-    t.bigint 'product_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'cart_id'
-    t.index ['cart_id'], name: 'index_cart_lists_on_cart_id'
-    t.index ['product_id'], name: 'index_cart_lists_on_product_id'
+  create_table "cart_lists", force: :cascade do |t|
+    t.integer "purchase_quantity", null: false
+    t.bigint "cart_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_lists_on_cart_id"
+    t.index ["product_id"], name: "index_cart_lists_on_product_id"
   end
 
-  create_table 'carts', force: :cascade do |t|
-    t.bigint 'user_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_carts_on_user_id'
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-  create_table 'order_products', force: :cascade do |t|
-    t.bigint 'order_id', null: false
-    t.bigint 'product_id', null: false
-    t.integer 'purchase_quantity', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['order_id'], name: 'index_order_products_on_order_id'
-    t.index ['product_id'], name: 'index_order_products_on_product_id'
+  create_table "order_products", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "purchase_quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
-  create_table 'orders', force: :cascade do |t|
-    t.integer 'status', default: 1, null: false
-    t.bigint 'user_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.float 'order_value', default: 0.0
-    t.index ['user_id'], name: 'index_orders_on_user_id'
+  create_table "orders", force: :cascade do |t|
+    t.integer "status", default: 1, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "order_value", default: 0.0
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table 'product_images', force: :cascade do |t|
-    t.string 'image_url', null: false
-    t.bigint 'product_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['product_id'], name: 'index_product_images_on_product_id'
+  create_table "product_images", force: :cascade do |t|
+    t.string "image_url", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_images_on_product_id"
   end
 
-  create_table 'products', force: :cascade do |t|
-    t.string 'name', null: false
-    t.float 'price', null: false
-    t.string 'country_of_origin', null: false
-    t.string 'brand', null: false
-    t.string 'age_group', null: false
-    t.string 'category', null: false
-    t.text 'description', null: false
-    t.integer 'stock_quantity', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.float "price", null: false
+    t.string "country_of_origin", null: false
+    t.string "brand", null: false
+    t.string "age_group", null: false
+    t.string "category", null: false
+    t.text "description", null: false
+    t.integer "stock_quantity", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.integer 'sign_in_count', default: 0, null: false
-    t.datetime 'current_sign_in_at'
-    t.datetime 'last_sign_in_at'
-    t.inet 'current_sign_in_ip'
-    t.inet 'last_sign_in_ip'
-    t.string 'first_name', null: false
-    t.string 'last_name'
-    t.integer 'telephone'
-    t.string 'address'
-    t.boolean 'is_admin', default: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'provider'
-    t.string 'uid'
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "first_name", null: false
+    t.string "last_name"
+    t.integer "telephone"
+    t.string "address"
+    t.boolean "is_admin", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key 'cart_lists', 'carts'
-  add_foreign_key 'cart_lists', 'products'
-  add_foreign_key 'order_products', 'orders'
-  add_foreign_key 'order_products', 'products'
-  add_foreign_key 'orders', 'users'
-  add_foreign_key 'product_images', 'products'
+  add_foreign_key "cart_lists", "carts"
+  add_foreign_key "cart_lists", "products"
+  add_foreign_key "order_products", "orders"
+  add_foreign_key "order_products", "products"
+  add_foreign_key "orders", "users"
+  add_foreign_key "product_images", "products"
 end
