@@ -6,7 +6,7 @@ class Admin::OrdersController < ApplicationController
   def index
     @orders = Order.all
   end
-  
+
   def show
     @ordered_products = @order.order_products
   end
@@ -19,6 +19,11 @@ class Admin::OrdersController < ApplicationController
     @order.update(order_params)
     OrderMailer.order_status_update(@order).deliver_now
     redirect_to admin_order_path(@order)
+  end
+
+  def user_orders
+    @user = 
+    @orders = Order.all
   end
 
   private

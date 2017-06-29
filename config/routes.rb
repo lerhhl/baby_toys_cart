@@ -13,11 +13,14 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  post '/add_to_cart/:product_id' => 'producs#add_to_cart', :as => 'add_to_cart'
+  get '/admin/:user_id/user_orders' => 'admin/orders#user_orders', :as => 'user_orders'
 
   namespace "admin" do
     resources :orders, except: [:new, :create, :destroy]
     resources :products
+    resources :user, only: [:index] do
+      resources :orders, only: [:index]
+    end
   end
 
 end

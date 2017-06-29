@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <% @orders.where(user_id: params[:user_id]).each do |order| %>
+        <div class="panel-heading"><%= "#{order.user.first_name}'s orders" %></div>
+        <% end %>
+        <table class="table">
+          <thead>
+            <th>Order no.</th>
+            <th>Payment</th>
+            <th>Status</th>
+          </thead>
+          <% @orders.where(user_id: params[:user_id]).each do |order| %>
+            <tr>
+              <td><%= link_to "#{order.id}", admin_order_path(order) %></td>
+              <td>S$<%= order.order_value %></td>
+              <td><%= order.status %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+</div>
