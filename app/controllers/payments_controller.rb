@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+
   TRANSACTION_SUCCESS_STATUSES = [
     Braintree::Transaction::Status::Authorizing,
     Braintree::Transaction::Status::Authorized,
@@ -6,8 +7,8 @@ class PaymentsController < ApplicationController
     Braintree::Transaction::Status::SettlementConfirmed,
     Braintree::Transaction::Status::SettlementPending,
     Braintree::Transaction::Status::Settling,
-    Braintree::Transaction::Status::SubmittedForSettlement,
-  ]
+    Braintree::Transaction::Status::SubmittedForSettlement
+  ].freeze
 
   def new
     @client_token = Braintree::ClientToken.generate
@@ -21,14 +22,14 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    amount = params["amount"] # In production you should not take amounts directly from clients
-    nonce = params["payment_method_nonce"]
+    amount = params['amount'] # In production you should not take amounts directly from clients
+    nonce = params['payment_method_nonce']
     @order = Order.find(params[:order_id])
     result = Braintree::Transaction.sale(
       amount: amount,
       payment_method_nonce: nonce,
-      :options => {
-        :submit_for_settlement => true
+      options: {
+        submit_for_settlement: true
       }
     )
 
@@ -47,18 +48,19 @@ class PaymentsController < ApplicationController
   def _create_result_hash(transaction)
     status = transaction.status
 
-    if TRANSACTION_SUCCESS_STATUSES.include? status
-      result_hash = {
-        :header => "Sweet Success!",
-        :icon => "success",
-        :message => "Your order has been successfully placed."
-      }
-    else
-      result_hash = {
-        :header => "Transaction Failed",
-        :icon => "fail",
-        :message => "Your transaction has failed. Please try again."
-      }
-    end
+    result_hash = if TRANSACTION_SUCCESS_STATUSES.include? status
+                    {
+                      header: 'Sweet Success!',
+                      icon: 'success',
+                      message: 'Your order has been successfully placed.'
+                    }
+                  else
+                    {
+                      header: 'Transaction Failed',
+                      icon: 'fail',
+                      message: 'Your transaction has failed. Please try again.'
+                    }
+                  end
   end
+
 end

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td><%= f.label "New status:" %></td>
-            <td><%= f.select :status, ["waiting for payment", "payment received", "shipped", "cancelled"] %></td>
+            <td><%= f.select :status, ["payment required", "payment received", "shipped", "cancelled"] %></td>
           </tr>
           <tr>
             <td><%= f.submit "Update order status", class:"btn btn-primary" %></td>

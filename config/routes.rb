@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
+  root 'products#index'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations'}
-  root "products#index"
+  resources :products, only: %i[show index]
 
-  resources :products, only: [:show, :index]
-
-  namespace "my" do
+  namespace 'my' do
     resource :cart
     resource :cart, only: [:index] do
       resources :cart_lists, except: [:index]
@@ -15,11 +14,10 @@ Rails.application.routes.draw do
 
   post '/add_to_cart/:product_id' => 'producs#add_to_cart', :as => 'add_to_cart'
 
-  namespace "admin" do
-    resources :orders, except: [:new, :create, :destroy]
+  namespace 'admin' do
+    resources :orders, except: %i[new create destroy]
     resources :products
   end
 
-  resource :payments, only: [:new, :create, :show]
-
+  resource :payments, only: %i[new create show]
 end

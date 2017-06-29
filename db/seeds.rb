@@ -1,27 +1,27 @@
 # Users - Create Admin
-User.find_or_create_by(email: "admin@admin.com") do |user|
-  user.first_name = "admin"
-  user.last_name = "administrator"
-  user.email = "admin@admin.com"
-  user.password = "password"
+User.find_or_create_by(email: 'admin@admin.com') do |user|
+  user.first_name = 'admin'
+  user.last_name = 'administrator'
+  user.email = 'admin@admin.com'
+  user.password = 'password'
   user.is_admin = true
-  user.telephone = 12345678
-  user.address = "address"
+  user.telephone = 12_345_678
+  user.address = 'address'
 end
 
 # Users - Create standard user
-User.find_or_create_by(email: "demo@demo.com") do |user|
-  user.first_name = "demo"
-  user.last_name = "demostrator"
-  user.email = "demo@demo.com"
-  user.password = "123456"
+User.find_or_create_by(email: 'demo@demo.com') do |user|
+  user.first_name = 'demo'
+  user.last_name = 'demostrator'
+  user.email = 'demo@demo.com'
+  user.password = '123456'
   user.is_admin = false
-  user.telephone = 12345678
-  user.address = "address"
+  user.telephone = 12_345_678
+  user.address = 'address'
 end
 
 # Products - Create Products
-#Product.create(name: Faker::Book.title, price: 1.00, country_of_origin: "Singapore", brand: "Lego", age_group: "3-4", category: "puzzle", description: "puzzle for family", stock_quantity: 50 )
+# Product.create(name: Faker::Book.title, price: 1.00, country_of_origin: "Singapore", brand: "Lego", age_group: "3-4", category: "puzzle", description: "puzzle for family", stock_quantity: 50 )
 
 product_count = 100
 if Product.count < product_count + 1
@@ -29,9 +29,9 @@ if Product.count < product_count + 1
     name = Faker::Book.title
     price = Faker::Number.decimal(2)
     country_of_origin = Faker::Address.country
-    brand = ["Lego", "Nintendo", "Mattel", "Hasbro", "Nerf", "MEGA Bloks", "Fisher Price", "Tiger Electronics", "Playmobil", "Kenner"].sample
-    age_group = ["1-2", "3-4", "5-7", "8-11", "12-14"].sample
-    category = ["role_play", "vehicles", "outdoor", "wheels", "dolls", "craft", "building", "puzzle"].sample
+    brand = ['Lego', 'Nintendo', 'Mattel', 'Hasbro', 'Nerf', 'MEGA Bloks', 'Fisher Price', 'Tiger Electronics', 'Playmobil', 'Kenner'].sample
+    age_group = ['1-2', '3-4', '5-7', '8-11', '12-14'].sample
+    category = %w[role_play vehicles outdoor wheels dolls craft building puzzle].sample
     description = Faker::HarryPotter.quote
     stock_quantity = Faker::Number.between(0, 999)
 
