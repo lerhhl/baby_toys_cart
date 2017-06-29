@@ -30,6 +30,9 @@
             </tr>              
           </table>
       </div>
+      <% if @order.status == "payment required" %>
+        <%= link_to "Make payment", new_payments_path(order_id: @order.id), class:"btn btn-primary btn-block" %>
+      <% end %>
       <br>
       <%= link_to "Back to My Orders", my_orders_path %>
     </div>

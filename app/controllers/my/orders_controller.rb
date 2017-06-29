@@ -39,7 +39,7 @@ class My::OrdersController < ApplicationController
     end
     @order.update(order_value: @order_value)
     OrderMailer.order_confirmation(@order).deliver_now
-    redirect_to root_path
+    redirect_to new_payments_path(order_id: @order.id)
   end
 
 end
