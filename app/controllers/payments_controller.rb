@@ -11,7 +11,8 @@ class PaymentsController < ApplicationController
 
   def new
     @client_token = Braintree::ClientToken.generate
-    @order_value = params[:order_value]
+    @order = Order.find(params[:order_id])
+    @order_value = @order.order_value
   end
 
   def show
@@ -22,7 +23,7 @@ class PaymentsController < ApplicationController
   def create
     amount = params["amount"] # In production you should not take amounts directly from clients
     nonce = params["payment_method_nonce"]
-
+    @order = Order.find(params[:order_id])
     result = Braintree::Transaction.sale(
       amount: amount,
       payment_method_nonce: nonce,
@@ -32,6 +33,7 @@ class PaymentsController < ApplicationController
     )
 
     if result.success? || result.transaction
+      OrderMailer.payment_received(@order).deliver_now 
       redirect_to payments_path(id: result.transaction.id)
     else
       error_messages = result.errors.map { |error| "Error: #{error.code}: #{error.message}" }

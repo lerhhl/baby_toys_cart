@@ -30,7 +30,7 @@
             </tr>              
           </table>
       </div>
-      <%= link_to "Make payment", new_payments_path(order_value: @order.order_value), class:"btn btn-primary btn-block" %>
+      <%= link_to "Make payment", new_payments_path(order_id: @order.id), class:"btn btn-primary btn-block" %>
       <br>
       <%= link_to "Back to My Orders", my_orders_path %>
     </div>

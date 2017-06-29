@@ -21,4 +21,10 @@ class OrderMailer < ApplicationMailer
     mail to: @user.email, subject: "Your Baby Toys online account is created."
   end
 
+  def payment_received(order)
+    @order = order
+    @user = User.find(@order.user_id)
+    mail to: @user.email, subject: "Your payment for Order Id: #{@order.id} has been received"
+  end
+
 end
