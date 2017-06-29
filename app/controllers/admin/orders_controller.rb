@@ -22,7 +22,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def user_orders
-    @user = 
     @orders = Order.all
   end
 
