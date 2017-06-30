@@ -31,40 +31,40 @@
     <div class="col-md-5, col-md-offset-7">
       <article class="content compact">
         <section>
-          <h5>Transaction Details</h5>
+          <h5><strong>Transaction Details</strong></h5>
 
-          <table cellpadding="0" cellspacing="0">
+          <table cellpadding="0" cellspacing="0" class="payment-table">
             <tbody>
               <tr>
-                <th>id</th>
+                <th>Id</th>
                 <td><%= @transaction.id %></td>
               </tr>
               <tr>
-                <th>type</th>
+                <th>Type</th>
                 <td><%= @transaction.type %></td>
               </tr>
               <tr>
-                <th>amount</th>
+                <th>Amount(S$)</th>
                 <td><%= @transaction.amount %></td>
               </tr>
               <tr>
-                <th>status</th>
+                <th>Status</th>
                 <td><%= @transaction.status %></td>
               </tr>
               <tr>
-                <th>created_at</th>
+                <th>Created at</th>
                 <td><%= @transaction.created_at %></td>
               </tr>
               <tr>
-                <th>updated_at</th>
+                <th>Updated at</th>
                 <td><%= @transaction.updated_at %></td>
               </tr>
               <tr>
-                <th>last_4</th>
+                <th>Credit card last 4 digits </th>
                 <td><%= @transaction.credit_card_details.last_4 %></td>
               </tr>
               <tr>
-                <th>card_type</th>
+                <th>Card Type</th>
                 <td><%= @transaction.credit_card_details.card_type %></td>
               </tr>
             </tbody>
