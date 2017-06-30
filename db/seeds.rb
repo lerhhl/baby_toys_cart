@@ -73,7 +73,6 @@ if Order.count < order_count + 1
     end
 
     # Update the order_value for the order
-    #@order = Order.last
     @order_value = @order.order_value
     @orderproducts = OrderProduct.where(order_id: @order.id)
     @orderproducts.each do |orderproduct|

@@ -15,7 +15,6 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     product_images_build
-    @product[:country_of_origin] = @product.country_name
     if @product.save && @product_image.save
       redirect_to product_path(@product)
     else
@@ -60,7 +59,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_params_update
-    params.require(:product)['country_of_origin'] = ISO3166::Country[params.require(:product)['country_of_origin']].translations[I18n.locale.to_s] || country.name
     params.require(:product).permit(:name, :description, :age_group, :country_of_origin, :category, :brand, :price, :stock_quantity)
   end
 
@@ -73,10 +71,13 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_images_delete
-    delete_image_arr = params[:selected_image_id]
-    delete_image_arr.each do |image_id|
-      @product_image = ProductImage.find(image_id)
-      @product_image.destroy
+    if params[:selected_image_id] != nil
+      delete_image_arr = params[:selected_image_id]
+      delete_image_arr != nil
+        delete_image_arr.each do |image_id|
+          @product_image = ProductImage.find(image_id)
+          @product_image.destroy
+        end
     end
   end
 
