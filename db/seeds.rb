@@ -51,7 +51,7 @@ if Product.count < product_count + 1
     description = Faker::HarryPotter.quote
     stock_quantity = Faker::Number.between(1, 999)
 
-    Product.create(name: name, price: price, country_of_origin: country_of_origin, brand: brand, age_group: age_group, category: category, description: description, stock_quantity: stock_quantity)
+    product = Product.create(name: name, price: price, country_of_origin: country_of_origin, brand: brand, age_group: age_group, category: category, description: description, stock_quantity: stock_quantity)
   end
 end
 
