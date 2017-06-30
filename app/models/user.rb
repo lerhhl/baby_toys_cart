@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }
 
   # has_one :cart, dependent: :destroy
-  has_many :cart_lists, dependent: :destroy
+  # has_many :cart_lists, dependent: :destroy
   has_many :orders, dependent: :destroy
 
   def self.from_omniauth(auth)
