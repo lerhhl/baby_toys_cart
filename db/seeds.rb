@@ -6,7 +6,7 @@ User.find_or_create_by(email: 'admin@admin.com') do |user|
   user.password = 'password'
   user.is_admin = true
   user.telephone = 12_345_678
-  user.address = 'address'
+  user.address = Faker::Address.street_address
 end
 
 # Create 2 standard users
@@ -17,7 +17,7 @@ user1 = User.find_or_create_by(email: 'demo@demo.com') do |user|
   user.password = '123456'
   user.is_admin = false
   user.telephone = 12_345_678
-  user.address = 'address'
+  user.address = Faker::Address.street_address
 end
 
 user2 = User.find_or_create_by(email: 'demo2@demo.com') do |user|
@@ -27,7 +27,7 @@ user2 = User.find_or_create_by(email: 'demo2@demo.com') do |user|
   user.password = '123456'
   user.is_admin = false
   user.telephone = 12_345_678
-  user.address = 'address'
+  user.address = Faker::Address.street_address
 end
 
 # Create cart for each user except Admin
@@ -39,7 +39,7 @@ end
   end
 
 # Create Products
-product_count = 100
+product_count = 30
 if Product.count < product_count + 1
   (product_count - Product.count).times do
     name = Faker::Book.title
@@ -56,7 +56,7 @@ if Product.count < product_count + 1
 end
 
 # Create Orders
-order_count = 10
+order_count = 20
 if Order.count < order_count + 1
   (order_count - Order.count).times do
     order_status = Faker::Number.between(1, 4)
