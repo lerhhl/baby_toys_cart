@@ -1,57 +1,70 @@
 <%= form_for [:admin, @product] do |f| %>
-  <table>
-    <tr>
-      <td><%= f.label :name %></td>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :description %></td>
-      <td><%= f.text_area :description %></td>
-    </tr>
-    <tr>
-      <td><%= f.label "age_group (years)" %></td>
-      <td><%= f.select :age_group, ["1-2", "3-4", "5-7", "8-11", "12-14"] %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :country_of_origin %></td>
-      <% if @product.country_of_origin == nil %>
-        <td><%= f.country_select :country_of_origin, { priority_countries: ["China","Indonesia","Malaysia","Singapore","Thailand"] }, { class: 'country-select-box' } %></td>
-      <% else %>
-        <td><%= f.country_select :country_of_origin, { priority_countries: ["#{@product.country_of_origin}","China","Indonesia","Malaysia","Singapore","Thailand"] }, { class: 'country-select-box' } %></td>
-      <% end %>
-    </tr>    
-    <tr>
-      <td><%= f.label :category %></td>
-      <td><%= f.select :category, ["role_play", "vehicles", "outdoor", "wheels", "dolls", "craft", "building", "puzzle"] %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :brand %></td>
-      <td><%= f.select :brand, ["Lego", "Nintendo", "Mattel", "Hasbro", "Nerf", "MEGA Bloks", "Fisher Price", "Tiger Electronics", "Playmobil", "Kenner"] %></td>
-    </tr>            
-    <tr>
-      <td><%= f.label :price %></td>
-      <td><%= f.number_field :price %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :stock_quantity %></td>
-      <td><%= f.number_field :stock_quantity %></td>
-    </tr>
-    <tr>
-      <td><%= f.label "New image" %></td>
-      <td><%= f.file_field :image_url %></td>
-    </tr>
 
-    <% @product.product_images.each_with_index do |image, index| %>
-    <tr>
-      <td><%= f.label "Image #{index + 1}"%></td>
-      <td>
-      <%= image_tag image.image_url, size: "200", class:"img-thumbnail" %>
-      delete? <%= check_box_tag "selected_image_id[]", image.id %></td>
-    </tr>
+  <div class="fish" id="fish"></div>
+  <div class="fish" id="fish2"></div>
+
+  <div class="formgroup" id="email-form">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="formgroup" id="email-form">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="formgroup" id="email-form">
+    <%= f.label "age_group (years)" %>
+    <%= f.select :age_group, ["1-2", "3-4", "5-7", "8-11", "12-14"] %>
+  </div>
+
+  <div class="formgroup" id="email-form">
+    <%= f.label :country_of_origin %>
+    <% if @product.country_of_origin == nil %>
+      <%= f.country_select :country_of_origin, { priority_countries: ["China","Indonesia","Malaysia","Singapore","Thailand"] }, { class: 'country-select-box' } %>
+    <% else %>
+      <%= f.country_select :country_of_origin, { priority_countries: ["#{@product.country_of_origin}","China","Indonesia","Malaysia","Singapore","Thailand"] }, { class: 'country-select-box' } %>
     <% end %>
-    
-    <tr>
-      <td colspan="2"><%= f.submit %></td>
-    </tr>
-  </table>
+  </div>
+
+  <div class="formgroup" id="email-form">
+    <%= f.label :category %>
+    <%= f.select :category, ["role_play", "vehicles", "outdoor", "wheels", "dolls", "craft", "building", "puzzle"] %>
+  </div>
+
+  <div class="formgroup" id="email-form">
+    <%= f.label :brand %>
+    <%= f.select :brand, ["Lego", "Nintendo", "Mattel", "Hasbro", "Nerf", "MEGA Bloks", "Fisher Price", "Tiger Electronics", "Playmobil", "Kenner"] %>
+  </div>
+
+  <div class="formgroup" id="email-form">
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div class="formgroup" id="email-form">
+    <%= f.label :stock_quantity %>
+    <%= f.number_field :stock_quantity %>
+  </div>
+
+  <div class="formgroup" id="email-form">
+    <%= f.label "New image" %>
+    <%= f.file_field :image_url %>
+  </div>
+
+
+  <% @product.product_images.each_with_index do |image, index| %>
+  <div class="formgroup" id="email-form">
+    <%= f.label "Image #{index + 1}"%>
+
+    <%= image_tag image.image_url, size: "200", class:"img-thumbnail" %>
+    delete? <%= check_box_tag "selected_image_id[]", image.id %>
+  </div>
+
+  <% end %>
+
+  <tr>
+    <td colspan="2"><%= f.submit %>
+  </tr>
+
 <% end %>

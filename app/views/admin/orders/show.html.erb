@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-xs-6 col-xs-offset-3">
       <div class="panel panel-default">
         <div class="panel-heading">
           <p>Order no. <%= @order.id %></p>
@@ -16,7 +16,7 @@
           <tbody>
             <% @ordered_products.each do |ordered_item| %>
               <% @product = Product.find(ordered_item.product_id) %>
-              <% @product_value = (@product.price * ordered_item.purchase_quantity) %>                
+              <% @product_value = (@product.price * ordered_item.purchase_quantity) %>
               <tr>
                 <td><%= link_to @product.name, admin_product_path(@product) %></td>
                 <td>S$<%= @product.price %></td>
@@ -28,13 +28,13 @@
           <tfoot>
             <tr>
               <td colspan="1"></td><td colspan="2">Grandtotal:</td><td>S$<%= @order.order_value %></td>
-            </tr> 
-          </tfoot>             
+            </tr>
+          </tfoot>
         </table>
       </div>
       <div>
         <%= link_to "Update order status", edit_admin_order_path(@order), class:"btn btn-primary" %>
-      </div>      
+      </div>
       <br>
       <%= link_to "Back to all orders", admin_orders_path %>
       <br><br>

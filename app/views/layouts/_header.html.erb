@@ -1,8 +1,10 @@
-    <nav id="banner", class="navbar navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <%= link_to "Baby Toys", root_path, class: "navbar-brand" %>
-        </div>
+<header class="clearfix">
+  <nav id="banner", class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container">
+      <div class="header-left">
+        <%= link_to "Baby Toys", root_path, class: "navbar-brand" %>
+      </div>
+      <div class="header-right">
         <ul class="nav navbar-nav">
           <% if user_signed_in? == false %>
             <li><%= link_to 'Sign up', new_user_registration_path%></li>
@@ -21,4 +23,6 @@
           <% end %>
         </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
+</header>

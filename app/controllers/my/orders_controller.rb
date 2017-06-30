@@ -17,6 +17,7 @@ class My::OrdersController < ApplicationController
   end
 
   def new
+    @user = current_user
     @cartlists = CartList.where(cart_id: current_cart)
     if @cartlists.empty?
       flash[:notice] = 'No product in your shopping cart'

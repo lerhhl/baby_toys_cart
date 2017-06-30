@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-xs-6 col-xs-offset-3">
       <div class="panel panel-default">
         <div class="panel-heading">
           <p>Order no. <%= @order.id %><p>
@@ -16,7 +16,7 @@
             <tbody>
               <% @ordered_products.each do |ordered_item| %>
                 <% @product = Product.find(ordered_item.product_id) %>
-                <% @product_value = (@product.price * ordered_item.purchase_quantity) %>                
+                <% @product_value = (@product.price * ordered_item.purchase_quantity) %>
                 <tr>
                   <td><%= @product.name %></td>
                   <td>S$<%= @product.price %></td>
@@ -27,7 +27,7 @@
             </tbody>
             <tr>
               <td colspan="1"></td><td colspan="2">Grandtotal:</td><td>S$<%= @order.order_value %></td>
-            </tr>              
+            </tr>
           </table>
       </div>
       <% if @order.status == "payment required" %>
