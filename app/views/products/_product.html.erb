@@ -17,7 +17,7 @@
     <% end %>
     <li>Name: <%= @product.name.capitalize %></li>
     <li>Description: <%= @product.description.capitalize %></li>
-    <li>Country of origin: <%= ISO3166::Country[@product.country_of_origin].translations[I18n.locale.to_s] || country.name.capitalize %></li>
+    <li>Country of origin: <%= @product.country_of_origin %></li>
     <li>Category: <%= @product.category.capitalize %></li>
     <li>Brand: <%= @product.brand.capitalize %></li>
     <li>Age_group: <%= @product.age_group %> years old</li>
