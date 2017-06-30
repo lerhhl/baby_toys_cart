@@ -103,8 +103,8 @@ label {
 }
 
 .shop-card {
-  width: 350px;
-  background: #f5f5f5;
+  width: 300px;
+  background-color: rgba(255, 245, 245, 0.6);
   overflow: hidden;
   border-radius: 5px;
   padding: 20px;
@@ -121,7 +121,6 @@ label {
     outline: none!important;
 
     & img {
-      margin: -95px 0 -60px;
       width: 100%;
     }
   }
@@ -129,7 +128,6 @@ label {
 
 .header-left {
   position: relative;
-  color: white;
   float: left;
 }
 
