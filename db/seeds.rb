@@ -54,7 +54,6 @@ if Product.count < product_count + 1
     product = Product.create(name: name, price: price, country_of_origin: country_of_origin, brand: brand, age_group: age_group, category: category, description: description, stock_quantity: stock_quantity)
   end
 end
-    product_image.create(product_id: product.id, image_url: )
 
 # Create Orders
 order_count = 20
