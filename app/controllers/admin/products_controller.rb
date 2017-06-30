@@ -1,4 +1,5 @@
 class Admin::ProductsController < ApplicationController
+  require 'Time'
 
   before_action :authenticate_user!
   before_action :is_admin?
@@ -6,6 +7,17 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @orders = @product.orders
+    @order_product_list = OrderProduct.where(product_id: params[:id])
+    @product_sales = {}
+    @order_product_list.each_with_index do |order, index|
+      @date = order[:created_at].to_date.strftime('%e %b %Y')
+      @purchase_quantity = order[:purchase_quantity]
+      if @product_sales.has_key?(@date)
+        @product_sales[@date] = @purchase_quantity + @product_sales[@date]
+      else
+        @product_sales[@date] = @purchase_quantity
+      end
+    end
   end
 
   def new
