@@ -9,10 +9,9 @@ RSpec.describe Product, type: :model do
   it { should validate_presence_of(:category) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:stock_quantity) }
-  
+
   it { should have_many(:product_images) }
   it { should have_many(:cart_lists) }
   it { should have_many(:orders) }
   it { should have_many(:order_products) }
-
 end

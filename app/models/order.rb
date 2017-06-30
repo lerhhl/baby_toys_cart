@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+
   validates :status, :user_id, presence: true
 
   belongs_to :user

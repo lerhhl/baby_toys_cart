@@ -1,7 +1,8 @@
 class Admin::ProductsController < ApplicationController
+
   before_action :authenticate_user!
   before_action :is_admin?
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: %i[show edit update destroy]
 
   def show
     @orders = @product.orders
@@ -22,8 +23,7 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if product_image_params.empty?
@@ -60,7 +60,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_params_update
-    params.require(:product)["country_of_origin"] = ISO3166::Country[params.require(:product)["country_of_origin"]].translations[I18n.locale.to_s] || country.name
+    params.require(:product)['country_of_origin'] = ISO3166::Country[params.require(:product)['country_of_origin']].translations[I18n.locale.to_s] || country.name
     params.require(:product).permit(:name, :description, :age_group, :country_of_origin, :category, :brand, :price, :stock_quantity)
   end
 
@@ -74,15 +74,14 @@ class Admin::ProductsController < ApplicationController
 
   def product_images_delete
     delete_image_arr = params[:selected_image_id]
-    unless delete_image_arr.nil?
-      delete_image_arr.each do |image_id|
-        @product_image = ProductImage.find(image_id)
-        @product_image.destroy
-      end
+    delete_image_arr.each do |image_id|
+      @product_image = ProductImage.find(image_id)
+      @product_image.destroy
     end
   end
 
   def set_product
     @product = Product.find(params[:id])
   end
+
 end
