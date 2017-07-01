@@ -5,7 +5,7 @@
       <div><%= link_to "Back", :back %></div>
       <br><br>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default">
         <div class="panel-heading">All Orders</div>
         <table class="table">
@@ -26,5 +26,6 @@
         </table>
       </div>
     </div>
+    <%= column_chart @product_sales, colors: ["#e4ee6e", "#666"], xtitle: "Product", ytitle: "Purchases" %>
   </div>
 </div>
