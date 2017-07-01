@@ -64,11 +64,11 @@ if Order.count < order_count + 1
     @order = Order.create(user_id: user_id, status: order_status)
 
     # Create OrderProducts belong to the order just created
-    orderproduct_count = Faker::Number.between(5, 10)
+    orderproduct_count = 15
     orderproduct_count.times do
       product_id = Faker::Number.between(1, Product.count)
       order_id = @order.id
-      purchase_quantity = 1
+      purchase_quantity = Faker::Number.between(1, 10)
       n = Faker::Number.between(0, 30)
       order = OrderProduct.create(product_id: product_id, order_id: order_id, purchase_quantity: purchase_quantity)
       order[:created_at] = order[:created_at] - n.days

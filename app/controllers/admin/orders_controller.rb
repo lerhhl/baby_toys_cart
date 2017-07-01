@@ -6,10 +6,22 @@ class Admin::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+    @product_sales = OrderProduct.group(:product_id).count
   end
 
   def show
     @ordered_products = @order.order_products
+    # @order_product_list = OrderProduct.where(product_id: params[:id])
+    # @product_sales = {}
+    # @order_product_list.each_with_index do |order, index|
+    #   @date = order[:created_at]
+    #   @purchase_quantity = order[:purchase_quantity]
+    #   if @product_sales.has_key?(@date)
+    #     @product_sales[@date] = @purchase_quantity + @product_sales[@date]
+    #   else
+    #     @product_sales[@date] = @purchase_quantity
+    #   end
+    # end
   end
 
   def edit

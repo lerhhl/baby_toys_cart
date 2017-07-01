@@ -3,6 +3,10 @@
 @import "bootstrap/**/*";
 @import "css/**/*";
 
+ul {
+  list-style: none;
+}
+
 img.product_image_index {
   height: 150px;
   border: 1px solid black;
