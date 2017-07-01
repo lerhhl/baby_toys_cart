@@ -18,13 +18,13 @@
                 <td><%= @product.name %></td>
                 <td>S$<%= @product.price %></td>
                 <td><%= ordered_item.purchase_quantity %></td>
-                <td>S$<%= @product_value %></td>
+                <td>S$<%= "%.2f" % @product_value %></td>
               </tr>
             <% end %>
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="1"></td><td colspan="2">Grandtotal:</td><td>S$<%= @order_value %></td>
+              <td colspan="1"></td><td colspan="2">Grandtotal:</td><td>S$<%= "%.2f" % @order_value %></td>
             </tr>
           </tfoot>
         </table>

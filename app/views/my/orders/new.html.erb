@@ -19,7 +19,7 @@
                 <td><%= @product.name %></td>
                 <td>S$<%= @product.price %></td>
                 <td><%= cartlist.purchase_quantity %></td>
-                <td>S$<%= @product_value %></td>
+                <td>S$<%= "%.2f" % @product_value %></td>
               </tr>
               <% @order_value += @product_value %>
             <% end %>
