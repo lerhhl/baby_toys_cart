@@ -44,7 +44,7 @@ if Product.count < product_count + 1
   (product_count - Product.count).times do
     name = Faker::Book.title
     price = Faker::Number.decimal(2)
-    country_of_origin = Faker::Address.country
+    country_of_origin = ['CN','MY','TH','PH'].sample
     brand = ['Lego', 'Nintendo', 'Mattel', 'Hasbro', 'Nerf', 'MEGA Bloks', 'Fisher Price', 'Tiger Electronics', 'Playmobil', 'Kenner'].sample
     age_group = ['1-2', '3-4', '5-7', '8-11', '12-14'].sample
     category = %w[role_play vehicles outdoor wheels dolls craft building puzzle].sample
@@ -64,12 +64,15 @@ if Order.count < order_count + 1
     @order = Order.create(user_id: user_id, status: order_status)
 
     # Create OrderProducts belong to the order just created
-    orderproduct_count = Faker::Number.between(1, 3)
+    orderproduct_count = Faker::Number.between(5, 10)
     orderproduct_count.times do
       product_id = Faker::Number.between(1, Product.count)
       order_id = @order.id
       purchase_quantity = 1
-      OrderProduct.create(product_id: product_id, order_id: order_id, purchase_quantity: purchase_quantity)
+      n = Faker::Number.between(0, 30)
+      order = OrderProduct.create(product_id: product_id, order_id: order_id, purchase_quantity: purchase_quantity)
+      order[:created_at] = order[:created_at] - n.days
+      order.save
     end
 
     # Update the order_value for the order
